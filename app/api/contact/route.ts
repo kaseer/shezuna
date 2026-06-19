@@ -7,6 +7,7 @@ const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "ops@shezuna.co.uk";
 const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL ?? "Shezuna Website <no-reply@shezuna.co.uk>";
 const FALLBACK_FROM_EMAIL = "Shezuna Website <onboarding@resend.dev>";
+const TEST_RECIPIENT = process.env.RESEND_TEST_RECIPIENT;
 
 export async function POST(request: Request) {
   try {
@@ -59,12 +60,32 @@ export async function POST(request: Request) {
       sendError = fallbackAttempt.error;
     }
 
+    // If account is still in testing mode, retry to the configured owner inbox.
+    if (
+      sendError?.message
+        ?.toLowerCase()
+        .includes("only send testing emails to your own email address") &&
+      TEST_RECIPIENT
+    ) {
+      const testingAttempt = await resend.emails.send({
+        from: FALLBACK_FROM_EMAIL,
+        ...emailPayload,
+        to: [TEST_RECIPIENT],
+      });
+      sendError = testingAttempt.error;
+    }
+
     if (sendError) {
       console.error("[contact] Resend error:", sendError);
+      const isTestingRestriction = sendError.message
+        ?.toLowerCase()
+        .includes("only send testing emails to your own email address");
       return NextResponse.json(
         {
           message: "Failed to send email. Please try again.",
-          detail: sendError.message,
+          detail: isTestingRestriction
+            ? "Resend account is in testing mode. Verify your domain in Resend or set RESEND_TEST_RECIPIENT to your Resend owner inbox."
+            : sendError.message,
         },
         { status: 500 }
       );
