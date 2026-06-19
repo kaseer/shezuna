@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { CONTACT_SERVICE_VALUES } from "@/src/lib/contact-services";
 
 export const contactSchema = z.object({
   name: z
@@ -15,17 +16,9 @@ export const contactSchema = z.object({
     .min(8, "Please enter a valid phone number.")
     .max(20, "Phone number is too long.")
     .regex(/^[+()\d\s-]+$/, "Please use digits and + - ( ) symbols only."),
-  serviceRequired: z.enum(
-    [
-      "last-mile-delivery",
-      "fleet-delivery-solutions",
-      "logistics-subcontractor",
-      "same-day-delivery",
-      "courier-services",
-      "other",
-    ],
-    { message: "Please choose a service." }
-  ),
+  serviceRequired: z.enum(CONTACT_SERVICE_VALUES, {
+    message: "Please choose a service.",
+  }),
   weeklyDeliveries: z
     .string()
     .min(1, "Please provide estimated weekly deliveries.")

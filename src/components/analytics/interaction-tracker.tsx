@@ -50,6 +50,8 @@ export function InteractionTracker() {
   useEffect(() => {
     let lastSignature = "";
     let lastAt = 0;
+    const controller = new AbortController();
+    const listenerOptions = { capture: true, signal: controller.signal } as const;
 
     const emitRaw = (payload: EventPayload) => {
       const signature = `${payload.action}|${payload.element}|${payload.path}`;
@@ -168,14 +170,12 @@ export function InteractionTracker() {
       });
     };
 
-    document.addEventListener("click", onClick, true);
-    document.addEventListener("change", onChange, true);
-    document.addEventListener("submit", onSubmit, true);
+    document.addEventListener("click", onClick, listenerOptions);
+    document.addEventListener("change", onChange, listenerOptions);
+    document.addEventListener("submit", onSubmit, listenerOptions);
 
     return () => {
-      document.removeEventListener("click", onClick, true);
-      document.removeEventListener("change", onChange, true);
-      document.removeEventListener("submit", onSubmit, true);
+      controller.abort();
     };
   }, []);
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Manrope, Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { Toaster } from "sonner";
 import { InteractionTracker } from "@/src/components/analytics/interaction-tracker";
 import "./globals.css";
 
@@ -88,6 +89,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         {children}
+        <Toaster richColors position="top-right" />
         <Analytics />
         <InteractionTracker />
       </body>

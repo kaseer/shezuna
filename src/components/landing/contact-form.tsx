@@ -5,7 +5,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { track } from "@vercel/analytics";
 import { Loader2, SendHorizontal } from "lucide-react";
+import { toast } from "sonner";
 import { contactSchema, type ContactFormValues } from "@/src/lib/contact-schema";
+import { CONTACT_SERVICE_LABELS, CONTACT_SERVICE_VALUES } from "@/src/lib/contact-services";
 
 type SubmitStatus = "idle" | "success" | "error";
 
@@ -59,6 +61,7 @@ export function ContactForm() {
 
       setSubmitStatus("success");
       setStatusMessage("Thanks. Our team will contact you shortly.");
+      toast.success("Thanks. Our team will contact you shortly.");
       track("contact_form_submit_success", {
         path: window.location.pathname,
         form: "contact_form",
@@ -71,6 +74,7 @@ export function ContactForm() {
           ? error.message
           : "Submission failed. Please call us directly at 0113 834 3555.";
       setStatusMessage(message);
+      toast.error(message);
       track("contact_form_submit_failed", {
         path: window.location.pathname,
         form: "contact_form",
@@ -87,6 +91,7 @@ export function ContactForm() {
       className="grid gap-5 rounded-3xl border border-[color:var(--color-border)] bg-white p-6 shadow-xl shadow-slate-900/5 sm:p-8"
       noValidate
     >
+      <fieldset disabled={isSubmitting} className="contents">
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="grid gap-2">
           <label htmlFor="name" className="text-sm font-semibold text-[color:var(--color-navy-900)]">
@@ -98,9 +103,10 @@ export function ContactForm() {
             autoComplete="name"
             className="h-11 rounded-xl border border-[color:var(--color-border)] px-3 text-sm outline-none transition focus:border-[color:var(--color-navy-600)] focus:ring-2 focus:ring-[color:var(--color-accent)]/35"
             aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? "name-error" : undefined}
             {...register("name")}
           />
-          {errors.name ? <p className="text-xs text-red-700">{errors.name.message}</p> : null}
+          {errors.name ? <p id="name-error" className="text-xs text-red-700">{errors.name.message}</p> : null}
         </div>
 
         <div className="grid gap-2">
@@ -113,9 +119,10 @@ export function ContactForm() {
             autoComplete="email"
             className="h-11 rounded-xl border border-[color:var(--color-border)] px-3 text-sm outline-none transition focus:border-[color:var(--color-navy-600)] focus:ring-2 focus:ring-[color:var(--color-accent)]/35"
             aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "email-error" : undefined}
             {...register("email")}
           />
-          {errors.email ? <p className="text-xs text-red-700">{errors.email.message}</p> : null}
+          {errors.email ? <p id="email-error" className="text-xs text-red-700">{errors.email.message}</p> : null}
         </div>
 
         <div className="grid gap-2">
@@ -128,9 +135,10 @@ export function ContactForm() {
             autoComplete="organization"
             className="h-11 rounded-xl border border-[color:var(--color-border)] px-3 text-sm outline-none transition focus:border-[color:var(--color-navy-600)] focus:ring-2 focus:ring-[color:var(--color-accent)]/35"
             aria-invalid={Boolean(errors.company)}
+            aria-describedby={errors.company ? "company-error" : undefined}
             {...register("company")}
           />
-          {errors.company ? <p className="text-xs text-red-700">{errors.company.message}</p> : null}
+          {errors.company ? <p id="company-error" className="text-xs text-red-700">{errors.company.message}</p> : null}
         </div>
       </div>
 
@@ -144,9 +152,10 @@ export function ContactForm() {
           autoComplete="tel"
           className="h-11 rounded-xl border border-[color:var(--color-border)] px-3 text-sm outline-none transition focus:border-[color:var(--color-navy-600)] focus:ring-2 focus:ring-[color:var(--color-accent)]/35"
           aria-invalid={Boolean(errors.phone)}
+          aria-describedby={errors.phone ? "phone-error" : undefined}
           {...register("phone")}
         />
-        {errors.phone ? <p className="text-xs text-red-700">{errors.phone.message}</p> : null}
+        {errors.phone ? <p id="phone-error" className="text-xs text-red-700">{errors.phone.message}</p> : null}
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
@@ -158,20 +167,20 @@ export function ContactForm() {
             id="serviceRequired"
             className="h-11 rounded-xl border border-[color:var(--color-border)] bg-white px-3 text-sm outline-none transition focus:border-[color:var(--color-navy-600)] focus:ring-2 focus:ring-[color:var(--color-accent)]/35"
             aria-invalid={Boolean(errors.serviceRequired)}
+            aria-describedby={errors.serviceRequired ? "serviceRequired-error" : undefined}
             defaultValue=""
             {...register("serviceRequired")}
           >
             <option value="" disabled>
               Select a service
             </option>
-            <option value="last-mile-delivery">Last-Mile Delivery</option>
-            <option value="fleet-delivery-solutions">Fleet Delivery Solutions</option>
-            <option value="logistics-subcontractor">Logistics Subcontractor</option>
-            <option value="same-day-delivery">Same-Day Delivery</option>
-            <option value="courier-services">Courier Services</option>
-            <option value="other">Other</option>
+            {CONTACT_SERVICE_VALUES.map((serviceValue) => (
+              <option key={serviceValue} value={serviceValue}>
+                {CONTACT_SERVICE_LABELS[serviceValue]}
+              </option>
+            ))}
           </select>
-          {errors.serviceRequired ? <p className="text-xs text-red-700">{errors.serviceRequired.message}</p> : null}
+          {errors.serviceRequired ? <p id="serviceRequired-error" className="text-xs text-red-700">{errors.serviceRequired.message}</p> : null}
         </div>
 
         <div className="grid gap-2">
@@ -184,9 +193,10 @@ export function ContactForm() {
             placeholder="e.g. 250"
             className="h-11 rounded-xl border border-[color:var(--color-border)] px-3 text-sm outline-none transition focus:border-[color:var(--color-navy-600)] focus:ring-2 focus:ring-[color:var(--color-accent)]/35"
             aria-invalid={Boolean(errors.weeklyDeliveries)}
+            aria-describedby={errors.weeklyDeliveries ? "weeklyDeliveries-error" : undefined}
             {...register("weeklyDeliveries")}
           />
-          {errors.weeklyDeliveries ? <p className="text-xs text-red-700">{errors.weeklyDeliveries.message}</p> : null}
+          {errors.weeklyDeliveries ? <p id="weeklyDeliveries-error" className="text-xs text-red-700">{errors.weeklyDeliveries.message}</p> : null}
         </div>
       </div>
 
@@ -204,9 +214,10 @@ export function ContactForm() {
           rows={5}
           className="rounded-xl border border-[color:var(--color-border)] px-3 py-2 text-sm outline-none transition focus:border-[color:var(--color-navy-600)] focus:ring-2 focus:ring-[color:var(--color-accent)]/35"
           aria-invalid={Boolean(errors.message)}
+          aria-describedby={errors.message ? "message-error" : undefined}
           {...register("message")}
         />
-        {errors.message ? <p className="text-xs text-red-700">{errors.message.message}</p> : null}
+        {errors.message ? <p id="message-error" className="text-xs text-red-700">{errors.message.message}</p> : null}
       </div>
 
       <button
@@ -240,6 +251,7 @@ export function ContactForm() {
       >
         {statusMessage}
       </p>
+      </fieldset>
     </form>
   );
 }

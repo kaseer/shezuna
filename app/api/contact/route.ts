@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 import { contactSchema } from "@/src/lib/contact-schema";
 import { EmailTemplate } from "@/src/components/email-template";
+import { getResendClient } from "@/src/lib/resend";
 
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "ops@shezuna.co.uk";
 const FROM_EMAIL =
@@ -12,6 +12,53 @@ const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 6;
 
 const requestLog = new Map<string, number[]>();
+
+type JsonBody = {
+  message: string;
+  detail?: string;
+  errors?: unknown;
+};
+
+type ResendErrorLike = {
+  message?: string;
+  code?: string | null;
+  name?: string | null;
+  statusCode?: number | null;
+};
+
+function response(status: number, body: JsonBody) {
+  return NextResponse.json(body, { status });
+}
+
+function success(message = "Contact request received.") {
+  return response(200, { message });
+}
+
+function fail(status: number, message: string, detail?: string, errors?: unknown) {
+  return response(status, { message, detail, errors });
+}
+
+function isDomainNotVerified(error: ResendErrorLike | null | undefined): boolean {
+  if (!error) return false;
+  const code = error.code?.toLowerCase();
+  if (code === "domain_not_verified" || code === "from_domain_not_verified") {
+    return true;
+  }
+
+  const message = error.message?.toLowerCase() ?? "";
+  return message.includes("domain") && message.includes("not verified");
+}
+
+function isTestingModeRestriction(error: ResendErrorLike | null | undefined): boolean {
+  if (!error) return false;
+  const code = error.code?.toLowerCase();
+  if (code === "testing_email_restricted" || code === "testing_mode_restricted") {
+    return true;
+  }
+
+  const message = error.message?.toLowerCase() ?? "";
+  return message.includes("only send testing emails to your own email address");
+}
 
 function sanitizeText(value: string): string {
   return value.replace(/[<>]/g, "").trim();
@@ -45,35 +92,24 @@ export async function POST(request: Request) {
   try {
     const clientIp = getClientIp(request);
     if (isRateLimited(clientIp)) {
-      return NextResponse.json(
-        { message: "Too many requests. Please try again in a minute." },
-        { status: 429 }
-      );
+      return fail(429, "Too many requests. Please try again in a minute.");
     }
 
     const payload = await request.json();
     const parsed = contactSchema.safeParse(payload);
 
     if (!parsed.success) {
-      return NextResponse.json(
-        { message: "Validation failed.", errors: parsed.error.flatten() },
-        { status: 400 }
-      );
+      return fail(400, "Validation failed.", undefined, parsed.error.flatten());
     }
 
-    if (!process.env.RESEND_API_KEY) {
+    const resend = getResendClient();
+    if (!resend) {
       console.error("[contact] RESEND_API_KEY is not set — email not sent.");
-      return NextResponse.json(
-        { message: "Email service is not configured." },
-        { status: 503 }
-      );
+      return fail(503, "Email service is not configured.");
     }
-
-    // Instantiate inside handler so the build never runs without a key
-    const resend = new Resend(process.env.RESEND_API_KEY);
 
     if (parsed.data.website && parsed.data.website.length > 0) {
-      return NextResponse.json({ message: "Contact request received." }, { status: 200 });
+      return success();
     }
 
     const name = sanitizeText(parsed.data.name);
@@ -104,13 +140,10 @@ export async function POST(request: Request) {
       ...emailPayload,
     });
 
-    let sendError = firstAttempt.error;
+    let sendError: ResendErrorLike | null | undefined = firstAttempt.error;
 
-    // If the custom domain sender is not verified in Resend yet, retry with onboarding sender.
-    if (
-      sendError?.message?.toLowerCase().includes("domain") &&
-      sendError?.message?.toLowerCase().includes("not verified")
-    ) {
+    // Prefer stable error codes first, then fallback to message matching.
+    if (isDomainNotVerified(sendError)) {
       const fallbackAttempt = await resend.emails.send({
         from: FALLBACK_FROM_EMAIL,
         ...emailPayload,
@@ -118,13 +151,8 @@ export async function POST(request: Request) {
       sendError = fallbackAttempt.error;
     }
 
-    // If account is still in testing mode, retry to the configured owner inbox.
-    if (
-      sendError?.message
-        ?.toLowerCase()
-        .includes("only send testing emails to your own email address") &&
-      TEST_RECIPIENT
-    ) {
+    // If account is in testing mode, retry to the configured owner inbox.
+    if (isTestingModeRestriction(sendError) && TEST_RECIPIENT) {
       const testingAttempt = await resend.emails.send({
         from: FALLBACK_FROM_EMAIL,
         ...emailPayload,
@@ -135,31 +163,18 @@ export async function POST(request: Request) {
 
     if (sendError) {
       console.error("[contact] Resend error:", sendError);
-      const isTestingRestriction = sendError.message
-        ?.toLowerCase()
-        .includes("only send testing emails to your own email address");
-      return NextResponse.json(
-        {
-          message: "Failed to send email. Please try again.",
-          detail: isTestingRestriction
-            ? "Resend account is in testing mode. Verify your domain in Resend or set RESEND_TEST_RECIPIENT to your Resend owner inbox."
-            : sendError.message,
-        },
-        { status: 500 }
-      );
+      const detail = isTestingModeRestriction(sendError)
+        ? "Resend account is in testing mode. Verify your domain in Resend or set RESEND_TEST_RECIPIENT to your Resend owner inbox."
+        : sendError.message;
+
+      return fail(500, "Failed to send email. Please try again.", detail);
     }
 
-    return NextResponse.json({ message: "Contact request received." }, { status: 200 });
+    return success();
   } catch (error) {
     const detail = error instanceof Error ? error.message : "Unknown server error.";
     console.error("[contact] Unexpected error:", error);
-    return NextResponse.json(
-      {
-        message: "Failed to send email. Please try again.",
-        detail,
-      },
-      { status: 500 }
-    );
+    return fail(500, "Failed to send email. Please try again.", detail);
   }
 }
 
