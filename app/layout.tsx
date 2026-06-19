@@ -45,12 +45,29 @@ export const metadata: Metadata = {
     siteName: "Shezuna",
     locale: "en_GB",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Shezuna: Smart Logistics. Proven Reliability.",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Shezuna: Smart Logistics. Proven Reliability.",
     description:
       "Data-backed delivery solutions for Leeds businesses. Fast dispatch, transparent operations, and dependable service.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Shezuna: Smart Logistics. Proven Reliability.",
+      },
+    ],
   },
 };
 
