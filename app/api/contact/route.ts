@@ -5,6 +5,7 @@ import { contactSchema } from "@/src/lib/contact-schema";
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "ops@shezuna.co.uk";
 const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL ?? "Shezuna Website <no-reply@shezuna.co.uk>";
+const FALLBACK_FROM_EMAIL = "Shezuna Website <onboarding@resend.dev>";
 
 export async function POST(request: Request) {
   const payload = await request.json();
@@ -30,8 +31,7 @@ export async function POST(request: Request) {
 
   const { name, email, phone, message } = parsed.data;
 
-  const { error } = await resend.emails.send({
-    from: FROM_EMAIL,
+  const emailPayload = {
     to: [TO_EMAIL],
     replyTo: email,
     subject: `New enquiry from ${name} — Shezuna`,
@@ -71,14 +71,33 @@ export async function POST(request: Request) {
         </div>
       </div>
     `,
+  };
+
+  const firstAttempt = await resend.emails.send({
+    from: FROM_EMAIL,
+    ...emailPayload,
   });
 
-  if (error) {
-    console.error("[contact] Resend error:", error);
+  let sendError = firstAttempt.error;
+
+  // If the custom domain sender is not verified in Resend yet, retry with onboarding sender.
+  if (
+    sendError?.message?.toLowerCase().includes("domain") &&
+    sendError?.message?.toLowerCase().includes("not verified")
+  ) {
+    const fallbackAttempt = await resend.emails.send({
+      from: FALLBACK_FROM_EMAIL,
+      ...emailPayload,
+    });
+    sendError = fallbackAttempt.error;
+  }
+
+  if (sendError) {
+    console.error("[contact] Resend error:", sendError);
     return NextResponse.json(
       {
         message: "Failed to send email. Please try again.",
-        detail: error.message,
+        detail: sendError.message,
       },
       { status: 500 }
     );
