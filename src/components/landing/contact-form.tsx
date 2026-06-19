@@ -45,7 +45,10 @@ export function ContactForm() {
       }
 
       if (!response.ok) {
-        const message = payload.detail ?? payload.message ?? "We could not submit your request.";
+        const message =
+          payload.detail ??
+          payload.message ??
+          `We could not submit your request. ${response.status} ${response.statusText}`;
         throw new Error(message);
       }
 
