@@ -221,7 +221,7 @@ export default function OgImage() {
                   fontWeight: 500,
                 }}
               >
-                shezuna.vercel.app
+                shezuna.co.uk
               </span>
             </div>
           </div>

@@ -18,7 +18,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shezuna.vercel.app"),
+  metadataBase: new URL("https://shezuna.co.uk"),
   title: {
     default: "Shezuna | Logistics in Leeds",
     template: "%s | Shezuna",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "Shezuna: Smart Logistics. Proven Reliability.",
     description:
       "Data-backed delivery solutions for Leeds businesses. Fast dispatch, transparent operations, and dependable service.",
-    url: "https://shezuna.vercel.app",
+    url: "https://shezuna.co.uk",
     siteName: "Shezuna",
     locale: "en_GB",
     type: "website",
