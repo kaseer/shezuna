@@ -33,16 +33,23 @@ export function ContactForm() {
         body: JSON.stringify(values),
       });
 
+      const payload = (await response.json()) as { message?: string; detail?: string };
+
       if (!response.ok) {
-        throw new Error("We could not submit your request.");
+        const message = payload.detail ?? payload.message ?? "We could not submit your request.";
+        throw new Error(message);
       }
 
       setSubmitStatus("success");
       setStatusMessage("Thanks. Our team will contact you shortly.");
       reset();
-    } catch {
+    } catch (error) {
       setSubmitStatus("error");
-      setStatusMessage("Submission failed. Please call us directly at +44 113 555 0147.");
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Submission failed. Please call us directly at +44 113 555 0147.";
+      setStatusMessage(message);
     }
   };
 

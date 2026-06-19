@@ -4,7 +4,7 @@ import { contactSchema } from "@/src/lib/contact-schema";
 
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "ops@shezuna.co.uk";
 const FROM_EMAIL =
-  process.env.CONTACT_FROM_EMAIL ?? "Shezuna Website <onboarding@resend.dev>";
+  process.env.CONTACT_FROM_EMAIL ?? "Shezuna Website <no-reply@shezuna.co.uk>";
 
 export async function POST(request: Request) {
   const payload = await request.json();
@@ -76,7 +76,10 @@ export async function POST(request: Request) {
   if (error) {
     console.error("[contact] Resend error:", error);
     return NextResponse.json(
-      { message: "Failed to send email. Please try again." },
+      {
+        message: "Failed to send email. Please try again.",
+        detail: error.message,
+      },
       { status: 500 }
     );
   }
