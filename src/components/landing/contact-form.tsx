@@ -33,7 +33,16 @@ export function ContactForm() {
         body: JSON.stringify(values),
       });
 
-      const payload = (await response.json()) as { message?: string; detail?: string };
+      const raw = await response.text();
+      let payload: { message?: string; detail?: string } = {};
+
+      if (raw) {
+        try {
+          payload = JSON.parse(raw) as { message?: string; detail?: string };
+        } catch {
+          payload = { message: raw };
+        }
+      }
 
       if (!response.ok) {
         const message = payload.detail ?? payload.message ?? "We could not submit your request.";
