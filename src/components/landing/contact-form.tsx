@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { track } from "@vercel/analytics";
 import { Loader2, SendHorizontal } from "lucide-react";
 import { contactSchema, type ContactFormValues } from "@/src/lib/contact-schema";
 
@@ -25,6 +26,10 @@ export function ContactForm() {
   const onSubmit = async (values: ContactFormValues) => {
     setSubmitStatus("idle");
     setStatusMessage("");
+    track("contact_form_submit_attempt", {
+      path: window.location.pathname,
+      form: "contact_form",
+    });
 
     try {
       const response = await fetch("/api/contact", {
@@ -54,6 +59,10 @@ export function ContactForm() {
 
       setSubmitStatus("success");
       setStatusMessage("Thanks. Our team will contact you shortly.");
+      track("contact_form_submit_success", {
+        path: window.location.pathname,
+        form: "contact_form",
+      });
       reset();
     } catch (error) {
       setSubmitStatus("error");
@@ -62,11 +71,18 @@ export function ContactForm() {
           ? error.message
           : "Submission failed. Please call us directly at 0113 834 3555.";
       setStatusMessage(message);
+      track("contact_form_submit_failed", {
+        path: window.location.pathname,
+        form: "contact_form",
+        reason: message.slice(0, 120),
+      });
     }
   };
 
   return (
     <form
+      id="contact-form"
+      data-track="contact_form"
       onSubmit={handleSubmit(onSubmit)}
       className="grid gap-5 rounded-3xl border border-[color:var(--color-border)] bg-white p-6 shadow-xl shadow-slate-900/5 sm:p-8"
       noValidate
@@ -134,6 +150,7 @@ export function ContactForm() {
 
       <button
         type="submit"
+        data-track="contact_form_submit_click"
         disabled={isSubmitting}
         className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[color:var(--color-navy-900)] px-5 text-sm font-semibold text-white transition hover:bg-[color:var(--color-navy-700)] disabled:cursor-not-allowed disabled:opacity-65"
       >

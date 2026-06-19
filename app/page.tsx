@@ -86,6 +86,7 @@ export default function Home() {
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
                 href="#contact"
+                data-track="hero_book_consultation_click"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[color:var(--color-accent)] px-5 text-sm font-semibold text-[color:var(--color-navy-950)] transition-transform hover:-translate-y-0.5"
               >
                 Book A Consultation
@@ -93,6 +94,7 @@ export default function Home() {
               </a>
               <a
                 href="#services"
+                data-track="hero_explore_services_click"
                 className="inline-flex h-12 items-center justify-center rounded-xl border border-[color:var(--color-border)] bg-white px-5 text-sm font-semibold text-[color:var(--color-navy-900)] hover:bg-slate-50"
               >
                 Explore Services
@@ -247,11 +249,15 @@ export default function Home() {
                 <ul className="mt-8 space-y-4 text-sm text-slate-200">
                   <li className="flex items-center gap-3">
                     <Mail className="h-4 w-4 text-[color:var(--color-accent)]" aria-hidden="true" />
-                    ops@shezuna.co.uk
+                    <a href="mailto:ops@shezuna.co.uk" data-track="contact_panel_email_click" className="hover:underline">
+                      ops@shezuna.co.uk
+                    </a>
                   </li>
                   <li className="flex items-center gap-3">
                     <Phone className="h-4 w-4 text-[color:var(--color-accent)]" aria-hidden="true" />
-                    0113 834 3555
+                    <a href="tel:01138343555" data-track="contact_panel_phone_click" className="hover:underline">
+                      0113 834 3555
+                    </a>
                   </li>
                   <li className="flex items-center gap-3">
                     <MapPin className="h-4 w-4 text-[color:var(--color-accent)]" aria-hidden="true" />
@@ -280,8 +286,12 @@ export default function Home() {
             <address className="not-italic leading-7">
               <p className="font-semibold text-[color:var(--color-navy-900)]">Leeds Office</p>
               <p>{businessAddress}</p>
-              <p>Phone: 0113 834 3555</p>
-              <p>Email: ops@shezuna.co.uk</p>
+              <p>
+                Phone: <a href="tel:01138343555" data-track="footer_phone_click" className="hover:underline">0113 834 3555</a>
+              </p>
+              <p>
+                Email: <a href="mailto:ops@shezuna.co.uk" data-track="footer_email_click" className="hover:underline">ops@shezuna.co.uk</a>
+              </p>
             </address>
           </div>
         </footer>
