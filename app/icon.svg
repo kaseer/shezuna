@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Shezuna favicon</title>
+  <desc id="desc">A premium navy square with an orange route line and white S for Shezuna logistics.</desc>
+  <rect width="64" height="64" rx="16" fill="#081425" />
+  <path d="M18 20C18 15.582 21.582 12 26 12H46V20H27C25.343 20 24 21.343 24 23C24 24.657 25.343 26 27 26H37C43.075 26 48 30.925 48 37C48 43.075 43.075 48 37 48H16V40H36C37.657 40 39 38.657 39 37C39 35.343 37.657 34 36 34H26C21.582 34 18 30.418 18 26V20Z" fill="#F8FAFC" />
+  <path d="M47 14C49.761 14 52 16.239 52 19C52 21.761 49.761 24 47 24C44.239 24 42 21.761 42 19C42 16.239 44.239 14 47 14Z" fill="#F59E0B" />
+  <path d="M12 46C12 43.791 13.791 42 16 42H26V50H16C13.791 50 12 48.209 12 46Z" fill="#F59E0B" />
+</svg>
