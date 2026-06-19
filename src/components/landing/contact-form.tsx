@@ -60,7 +60,7 @@ export function ContactForm() {
       const message =
         error instanceof Error
           ? error.message
-          : "Submission failed. Please call us directly at +44 113 555 0147.";
+          : "Submission failed. Please call us directly at 0113 834 3555.";
       setStatusMessage(message);
     }
   };

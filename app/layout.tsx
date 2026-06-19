@@ -20,7 +20,7 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://shezuna.co.uk"),
   title: {
-    default: "Shezuna | Logistics in Leeds",
+    default: "Leeds Logistics Subcontractor | Last-Mile Delivery Experts",
     template: "%s | Shezuna",
   },
   icons: {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
   description:
-    "Shezuna delivers reliable, technology-backed logistics in Leeds, including express delivery, B2B logistics, and last-mile solutions.",
+    "Leeds specialist delivering scalable last-mile and fleet logistics. Serving Leeds now. Book your consultation for dependable delivery support.",
   keywords: [
     "Shezuna",
     "Logistics in Leeds",

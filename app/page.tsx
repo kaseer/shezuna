@@ -6,28 +6,62 @@ import { Reveal } from "@/src/components/landing/reveal";
 
 const services = [
   {
-    title: "Express Delivery",
+    title: "Last-Mile Delivery Services",
     description:
-      "Time-critical dispatch for urgent parcels and same-day requirements across Leeds and nearby regions.",
+      "Time-critical final-leg execution for urgent parcels and scheduled drops across Leeds and surrounding Yorkshire routes.",
     icon: Rocket,
   },
   {
-    title: "B2B Logistics",
+    title: "Logistics Subcontractor Support",
     description:
-      "Reliable scheduled routes for retailers, warehouses, and distributors with real-time status visibility.",
+      "Direct-contract and subcontract delivery support for carriers and enterprise partners that need reliable operational coverage.",
     icon: ShieldCheck,
   },
   {
-    title: "Last-Mile Solutions",
+    title: "Fleet Delivery Solutions in Leeds",
     description:
-      "Customer-first final leg delivery designed for precision windows, proof of delivery, and reduced friction.",
+      "Scalable fleet capacity, route planning, and dispatch control built for high-volume operations and growth periods.",
     icon: Route,
   },
 ];
 
+const businessAddress = process.env.NEXT_PUBLIC_BUSINESS_ADDRESS ?? "Leeds, West Yorkshire, United Kingdom";
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Shezuna",
+  image: "https://shezuna.co.uk/opengraph-image",
+  url: "https://shezuna.co.uk",
+  telephone: "0113 834 3555",
+  email: "ops@shezuna.co.uk",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: process.env.NEXT_PUBLIC_BUSINESS_STREET_ADDRESS ?? "Leeds City Centre",
+    addressLocality: "Leeds",
+    addressRegion: "West Yorkshire",
+    postalCode: process.env.NEXT_PUBLIC_BUSINESS_POSTCODE ?? "LS1",
+    addressCountry: "GB",
+  },
+  areaServed: ["Leeds", "Yorkshire"],
+  sameAs: ["https://shezuna.co.uk"],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "07:00",
+      closes: "21:00",
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <div className="relative overflow-x-clip">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_10%_18%,rgba(37,99,235,0.16),transparent_38%),radial-gradient(circle_at_89%_12%,rgba(245,158,11,0.18),transparent_40%)]" />
       <Navbar />
 
@@ -40,11 +74,12 @@ export default function Home() {
 
             <div className="space-y-5">
               <h1 className="font-display text-4xl font-semibold tracking-tight text-[color:var(--color-navy-950)] sm:text-5xl lg:text-6xl">
-                Reliable, Tech-Driven Logistics for Leeds
+                Leeds Last-Mile Delivery That Solves High-Volume Logistics Pressure
               </h1>
               <p className="max-w-xl text-base leading-7 text-[color:var(--color-muted)] sm:text-lg">
-                Shezuna helps ambitious businesses move faster with dependable delivery operations, transparent
-                tracking, and precision planning powered by smart systems.
+                Shezuna is a Leeds-based Logistics subcontractor delivering Last-mile delivery services and Fleet
+                delivery solutions in Leeds for businesses that need speed, service consistency, and reliable route
+                execution.
               </p>
             </div>
 
@@ -99,14 +134,39 @@ export default function Home() {
             <div className="rounded-3xl border border-[color:var(--color-border)] bg-white/90 p-7 sm:p-10">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-muted)]">About</p>
               <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-[color:var(--color-navy-950)] sm:text-4xl">
-                Shezuna: Smart Logistics. Proven Reliability.
+                Expert Last-Mile Logistics for High-Volume Operations
               </h2>
               <p className="mt-6 max-w-4xl text-base leading-8 text-[color:var(--color-muted)]">
-                At Shezuna, we bridge the gap between traditional logistics and modern technology. Based in Leeds,
-                we provide data-backed, efficient delivery solutions that prioritize precision, speed, and
-                transparency. Whether it&apos;s last-mile connectivity or scheduled B2B logistics, Shezuna is built to
-                deliver.
+                When delivery volume spikes, many operators face missed windows, weak route control, and inconsistent
+                communication. Shezuna solves this with structured dispatch planning, operational accountability, and
+                last-mile execution built for SLA performance.
               </p>
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[color:var(--color-muted)]">
+                We are not a remote agency. We are a Leeds-based specialist team with direct experience supporting
+                major carrier ecosystems across direct and subcontract contract environments. From daily load planning to
+                last-mile completion, we deliver measurable reliability on the ground.
+              </p>
+              <h2 className="mt-8 font-display text-2xl font-semibold tracking-tight text-[color:var(--color-navy-950)] sm:text-3xl">
+                Reliable Fleet Delivery Solutions in Yorkshire
+              </h2>
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[color:var(--color-muted)]">
+                Our solution is simple: scalable fleet support, transparent reporting, and professional subcontract
+                delivery operations that keep customer promises intact across Leeds and the wider Yorkshire region.
+              </p>
+              <ul className="mt-6 grid gap-3 text-sm leading-7 text-[color:var(--color-navy-900)] sm:grid-cols-2">
+                <li className="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--background)] px-4 py-3">
+                  Last-mile delivery services with precision dispatch and proof of delivery
+                </li>
+                <li className="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--background)] px-4 py-3">
+                  High-volume operational capacity for contract and subcontract delivery work
+                </li>
+                <li className="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--background)] px-4 py-3">
+                  Fleet scalability to support growth, seasonal demand, and urgent route expansion
+                </li>
+                <li className="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--background)] px-4 py-3">
+                  Professional reliability with clear reporting and results-oriented service standards
+                </li>
+              </ul>
             </div>
           </Reveal>
         </section>
@@ -116,7 +176,7 @@ export default function Home() {
             <div className="space-y-3 text-center">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-muted)]">Services</p>
               <h2 className="font-display text-3xl font-semibold tracking-tight text-[color:var(--color-navy-950)] sm:text-4xl">
-                Built For High-Trust Logistics Delivery
+                Results-Driven Logistics Subcontractor Support for Leeds and Yorkshire
               </h2>
             </div>
           </Reveal>
@@ -139,6 +199,38 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="compliance" className="py-14 sm:py-16">
+          <Reveal>
+            <div className="rounded-3xl border border-[color:var(--color-border)] bg-white/90 p-7 sm:p-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-muted)]">
+                Trust Signals
+              </p>
+              <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-[color:var(--color-navy-950)] sm:text-4xl">
+                Compliance and Standards
+              </h2>
+              <p className="mt-6 max-w-4xl text-base leading-8 text-[color:var(--color-muted)]">
+                Our operating model is built around professional standards expected in carrier-led subcontract
+                environments. We focus on process consistency, accountable communication, and service-level execution
+                that protects both your brand and your customer experience.
+              </p>
+              <ul className="mt-6 grid gap-3 text-sm leading-7 text-[color:var(--color-navy-900)] sm:grid-cols-2">
+                <li className="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-background)] px-4 py-3">
+                  Contract-ready operational discipline for direct and subcontract routes
+                </li>
+                <li className="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-background)] px-4 py-3">
+                  Proof-of-delivery and route performance tracking standards
+                </li>
+                <li className="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-background)] px-4 py-3">
+                  Structured escalation and communication workflows for service continuity
+                </li>
+                <li className="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-background)] px-4 py-3">
+                  Results-oriented support for high-volume operations in Leeds and Yorkshire
+                </li>
+              </ul>
+            </div>
+          </Reveal>
+        </section>
+
         <section id="contact" className="py-14 sm:py-16">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <Reveal>
@@ -148,17 +240,18 @@ export default function Home() {
                   Let&apos;s Move Your Operations Forward
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-slate-300">
-                  Share your delivery requirements and we&apos;ll design a practical logistics plan for your business.
+                  Need dependable logistics support in Yorkshire? Share your requirements and our Leeds team will build
+                  a high-performance delivery plan for your routes, volume, and SLA targets.
                 </p>
 
                 <ul className="mt-8 space-y-4 text-sm text-slate-200">
                   <li className="flex items-center gap-3">
                     <Mail className="h-4 w-4 text-[color:var(--color-accent)]" aria-hidden="true" />
-                    contact@shezuna.co.uk
+                    ops@shezuna.co.uk
                   </li>
                   <li className="flex items-center gap-3">
                     <Phone className="h-4 w-4 text-[color:var(--color-accent)]" aria-hidden="true" />
-                    +44 113 555 0147
+                    0113 834 3555
                   </li>
                   <li className="flex items-center gap-3">
                     <MapPin className="h-4 w-4 text-[color:var(--color-accent)]" aria-hidden="true" />
@@ -177,6 +270,21 @@ export default function Home() {
             </Reveal>
           </div>
         </section>
+
+        <footer className="border-t border-[color:var(--color-border)] py-10 text-sm text-[color:var(--color-muted)]">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="font-semibold text-[color:var(--color-navy-900)]">Shezuna</p>
+              <p className="mt-1">Leeds Logistics Subcontractor & Last-Mile Delivery Service</p>
+            </div>
+            <address className="not-italic leading-7">
+              <p className="font-semibold text-[color:var(--color-navy-900)]">Leeds Office</p>
+              <p>{businessAddress}</p>
+              <p>Phone: 0113 834 3555</p>
+              <p>Email: ops@shezuna.co.uk</p>
+            </address>
+          </div>
+        </footer>
       </main>
     </div>
   );
