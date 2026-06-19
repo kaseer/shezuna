@@ -117,6 +117,21 @@ export function ContactForm() {
           />
           {errors.email ? <p className="text-xs text-red-700">{errors.email.message}</p> : null}
         </div>
+
+        <div className="grid gap-2">
+          <label htmlFor="company" className="text-sm font-semibold text-[color:var(--color-navy-900)]">
+            Company Name
+          </label>
+          <input
+            id="company"
+            type="text"
+            autoComplete="organization"
+            className="h-11 rounded-xl border border-[color:var(--color-border)] px-3 text-sm outline-none transition focus:border-[color:var(--color-navy-600)] focus:ring-2 focus:ring-[color:var(--color-accent)]/35"
+            aria-invalid={Boolean(errors.company)}
+            {...register("company")}
+          />
+          {errors.company ? <p className="text-xs text-red-700">{errors.company.message}</p> : null}
+        </div>
       </div>
 
       <div className="grid gap-2">
@@ -132,6 +147,52 @@ export function ContactForm() {
           {...register("phone")}
         />
         {errors.phone ? <p className="text-xs text-red-700">{errors.phone.message}</p> : null}
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid gap-2">
+          <label htmlFor="serviceRequired" className="text-sm font-semibold text-[color:var(--color-navy-900)]">
+            Service Required
+          </label>
+          <select
+            id="serviceRequired"
+            className="h-11 rounded-xl border border-[color:var(--color-border)] bg-white px-3 text-sm outline-none transition focus:border-[color:var(--color-navy-600)] focus:ring-2 focus:ring-[color:var(--color-accent)]/35"
+            aria-invalid={Boolean(errors.serviceRequired)}
+            defaultValue=""
+            {...register("serviceRequired")}
+          >
+            <option value="" disabled>
+              Select a service
+            </option>
+            <option value="last-mile-delivery">Last-Mile Delivery</option>
+            <option value="fleet-delivery-solutions">Fleet Delivery Solutions</option>
+            <option value="logistics-subcontractor">Logistics Subcontractor</option>
+            <option value="same-day-delivery">Same-Day Delivery</option>
+            <option value="courier-services">Courier Services</option>
+            <option value="other">Other</option>
+          </select>
+          {errors.serviceRequired ? <p className="text-xs text-red-700">{errors.serviceRequired.message}</p> : null}
+        </div>
+
+        <div className="grid gap-2">
+          <label htmlFor="weeklyDeliveries" className="text-sm font-semibold text-[color:var(--color-navy-900)]">
+            Estimated Weekly Deliveries
+          </label>
+          <input
+            id="weeklyDeliveries"
+            type="text"
+            placeholder="e.g. 250"
+            className="h-11 rounded-xl border border-[color:var(--color-border)] px-3 text-sm outline-none transition focus:border-[color:var(--color-navy-600)] focus:ring-2 focus:ring-[color:var(--color-accent)]/35"
+            aria-invalid={Boolean(errors.weeklyDeliveries)}
+            {...register("weeklyDeliveries")}
+          />
+          {errors.weeklyDeliveries ? <p className="text-xs text-red-700">{errors.weeklyDeliveries.message}</p> : null}
+        </div>
+      </div>
+
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="website">Website</label>
+        <input id="website" type="text" tabIndex={-1} autoComplete="off" {...register("website")} />
       </div>
 
       <div className="grid gap-2">
@@ -162,7 +223,7 @@ export function ContactForm() {
         ) : (
           <>
             <SendHorizontal className="h-4 w-4" aria-hidden="true" />
-            Request Consultation
+            Request A Free Logistics Assessment
           </>
         )}
       </button>

@@ -2,12 +2,23 @@ import * as React from "react";
 
 type EmailTemplateProps = {
   name: string;
+  company: string;
   email: string;
   phone: string;
+  serviceRequired: string;
+  weeklyDeliveries: string;
   message: string;
 };
 
-export function EmailTemplate({ name, email, phone, message }: EmailTemplateProps) {
+export function EmailTemplate({
+  name,
+  company,
+  email,
+  phone,
+  serviceRequired,
+  weeklyDeliveries,
+  message,
+}: EmailTemplateProps) {
   return (
     <div
       style={{
@@ -63,6 +74,20 @@ export function EmailTemplate({ name, email, phone, message }: EmailTemplateProp
                   verticalAlign: "top",
                 }}
               >
+                Company
+              </td>
+              <td style={{ padding: "10px 0", fontSize: "15px" }}>{company}</td>
+            </tr>
+
+            <tr style={{ borderTop: "1px solid #e2e8f0" }}>
+              <td
+                style={{
+                  padding: "10px 0",
+                  fontSize: "13px",
+                  color: "#64748b",
+                  verticalAlign: "top",
+                }}
+              >
                 Email
               </td>
               <td style={{ padding: "10px 0", fontSize: "15px" }}>
@@ -88,6 +113,34 @@ export function EmailTemplate({ name, email, phone, message }: EmailTemplateProp
                   {phone}
                 </a>
               </td>
+            </tr>
+
+            <tr style={{ borderTop: "1px solid #e2e8f0" }}>
+              <td
+                style={{
+                  padding: "10px 0",
+                  fontSize: "13px",
+                  color: "#64748b",
+                  verticalAlign: "top",
+                }}
+              >
+                Service Required
+              </td>
+              <td style={{ padding: "10px 0", fontSize: "15px" }}>{serviceRequired}</td>
+            </tr>
+
+            <tr style={{ borderTop: "1px solid #e2e8f0" }}>
+              <td
+                style={{
+                  padding: "10px 0",
+                  fontSize: "13px",
+                  color: "#64748b",
+                  verticalAlign: "top",
+                }}
+              >
+                Weekly Deliveries
+              </td>
+              <td style={{ padding: "10px 0", fontSize: "15px" }}>{weeklyDeliveries}</td>
             </tr>
 
             <tr style={{ borderTop: "1px solid #e2e8f0" }}>

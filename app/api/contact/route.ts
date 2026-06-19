@@ -8,9 +8,49 @@ const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL ?? "Shezuna Website <no-reply@shezuna.co.uk>";
 const FALLBACK_FROM_EMAIL = "Shezuna Website <onboarding@resend.dev>";
 const TEST_RECIPIENT = process.env.RESEND_TEST_RECIPIENT;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX = 6;
+
+const requestLog = new Map<string, number[]>();
+
+function sanitizeText(value: string): string {
+  return value.replace(/[<>]/g, "").trim();
+}
+
+function getClientIp(request: Request): string {
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0].trim();
+  }
+
+  return request.headers.get("x-real-ip") ?? "unknown";
+}
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entries = requestLog.get(ip) ?? [];
+  const valid = entries.filter((time) => now - time < RATE_LIMIT_WINDOW_MS);
+
+  if (valid.length >= RATE_LIMIT_MAX) {
+    requestLog.set(ip, valid);
+    return true;
+  }
+
+  valid.push(now);
+  requestLog.set(ip, valid);
+  return false;
+}
 
 export async function POST(request: Request) {
   try {
+    const clientIp = getClientIp(request);
+    if (isRateLimited(clientIp)) {
+      return NextResponse.json(
+        { message: "Too many requests. Please try again in a minute." },
+        { status: 429 }
+      );
+    }
+
     const payload = await request.json();
     const parsed = contactSchema.safeParse(payload);
 
@@ -32,13 +72,31 @@ export async function POST(request: Request) {
     // Instantiate inside handler so the build never runs without a key
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    const { name, email, phone, message } = parsed.data;
+    if (parsed.data.website && parsed.data.website.length > 0) {
+      return NextResponse.json({ message: "Contact request received." }, { status: 200 });
+    }
+
+    const name = sanitizeText(parsed.data.name);
+    const company = sanitizeText(parsed.data.company);
+    const email = sanitizeText(parsed.data.email);
+    const phone = sanitizeText(parsed.data.phone);
+    const serviceRequired = sanitizeText(parsed.data.serviceRequired);
+    const weeklyDeliveries = sanitizeText(parsed.data.weeklyDeliveries);
+    const message = sanitizeText(parsed.data.message);
 
     const emailPayload = {
       to: [TO_EMAIL],
       replyTo: email,
       subject: `New enquiry from ${name} — Shezuna`,
-      react: EmailTemplate({ name, email, phone, message }),
+      react: EmailTemplate({
+        name,
+        company,
+        email,
+        phone,
+        serviceRequired,
+        weeklyDeliveries,
+        message,
+      }),
     };
 
     const firstAttempt = await resend.emails.send({

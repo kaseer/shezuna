@@ -22,8 +22,11 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://shezuna.co.uk"),
   title: {
-    default: "Leeds Logistics Subcontractor | Last-Mile Delivery Experts",
+    default: "Logistics Company Leeds | Last-Mile Delivery & Fleet Solutions | Shezuna",
     template: "%s | Shezuna",
+  },
+  alternates: {
+    canonical: "https://shezuna.co.uk",
   },
   icons: {
     icon: "/icon.svg",
@@ -31,7 +34,7 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
   description:
-    "Leeds specialist delivering scalable last-mile and fleet logistics. Serving Leeds now. Book your consultation for dependable delivery support.",
+    "Professional logistics and last-mile delivery services across Leeds and Yorkshire. Fleet support, subcontract logistics, and reliable delivery solutions for businesses.",
   keywords: [
     "Shezuna",
     "Logistics in Leeds",
