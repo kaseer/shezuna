@@ -72,31 +72,15 @@ export default function OgImage() {
         >
           {/* Top: Logo mark + brand name */}
           <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-            {/* Logo mark — S letterform */}
-            <div
-              style={{
-                width: 64,
-                height: 64,
-                borderRadius: 16,
-                background: "#112443",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                border: "1.5px solid rgba(245,158,11,0.45)",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: 34,
-                  fontWeight: 800,
-                  color: "#ffffff",
-                  lineHeight: 1,
-                  letterSpacing: "-1px",
-                }}
-              >
-                S
-              </span>
-            </div>
+            {/* Actual Shezuna logo mark from icon.svg */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPg0KICA8dGl0bGUgaWQ9InRpdGxlIj5TaGV6dW5hIGZhdmljb248L3RpdGxlPg0KICA8ZGVzYyBpZD0iZGVzYyI+QSBwcmVtaXVtIG5hdnkgc3F1YXJlIHdpdGggYW4gb3JhbmdlIHJvdXRlIGxpbmUgYW5kIHdoaXRlIFMgZm9yIFNoZXp1bmEgbG9naXN0aWNzLjwvZGVzYz4NCiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMwODE0MjUiIC8+DQogIDxwYXRoIGQ9Ik0xOCAyMEMxOCAxNS41ODIgMjEuNTgyIDEyIDI2IDEySDQ2VjIwSDI3QzI1LjM0MyAyMCAyNCAyMS4zNDMgMjQgMjNDMjQgMjQuNjU3IDI1LjM0MyAyNiAyNyAyNkgzN0M0My4wNzUgMjYgNDggMzAuOTI1IDQ4IDM3QzQ4IDQzLjA3NSA0My4wNzUgNDggMzcgNDhIMTZWNDBIMzZDMzcuNjU3IDQwIDM5IDM4LjY1NyAzOSAzN0MzOSAzNS4zNDMgMzcuNjU3IDM0IDM2IDM0SDI2QzIxLjU4MiAzNCAxOCAzMC40MTggMTggMjZWMjBaIiBmaWxsPSIjRjhGQUZDIiAvPg0KICA8cGF0aCBkPSJNNDcgMTRDNDkuNzYxIDE0IDUyIDE2LjIzOSA1MiAxOUM1MiAyMS43NjEgNDkuNzYxIDI0IDQ3IDI0QzQ0LjIzOSAyNCA0MiAyMS43NjEgNDIgMTlDNDIgMTYuMjM5IDQ0LjIzOSAxNCA0NyAxNFoiIGZpbGw9IiNGNTlFMEIiIC8+DQogIDxwYXRoIGQ9Ik0xMiA0NkMxMiA0My43OTEgMTMuNzkxIDQyIDE2IDQySDI2VjUwSDE2QzEzLjc5MSA1MCAxMiA0OC4yMDkgMTIgNDZaIiBmaWxsPSIjRjU5RTBCIiAvPg0KPC9zdmc+DQo="
+              alt="Shezuna logo"
+              width={72}
+              height={72}
+              style={{ borderRadius: 18 }}
+            />
 
             <span
               style={{
