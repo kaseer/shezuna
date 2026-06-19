@@ -18,6 +18,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://shezuna.vercel.app"),
   title: {
     default: "Shezuna | Logistics in Leeds",
     template: "%s | Shezuna",
@@ -40,8 +41,16 @@ export const metadata: Metadata = {
     title: "Shezuna: Smart Logistics. Proven Reliability.",
     description:
       "Data-backed delivery solutions for Leeds businesses. Fast dispatch, transparent operations, and dependable service.",
+    url: "https://shezuna.vercel.app",
+    siteName: "Shezuna",
     locale: "en_GB",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shezuna: Smart Logistics. Proven Reliability.",
+    description:
+      "Data-backed delivery solutions for Leeds businesses. Fast dispatch, transparent operations, and dependable service.",
   },
 };
 
