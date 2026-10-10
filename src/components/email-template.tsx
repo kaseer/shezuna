@@ -1,12 +1,13 @@
 import * as React from "react";
+import { site } from "@/src/lib/site";
 
 type EmailTemplateProps = {
   name: string;
   company: string;
   email: string;
   phone: string;
-  serviceRequired: string;
-  weeklyDeliveries: string;
+  role: string;
+  region: string;
   message: string;
 };
 
@@ -15,8 +16,8 @@ export function EmailTemplate({
   company,
   email,
   phone,
-  serviceRequired,
-  weeklyDeliveries,
+  role,
+  region,
   message,
 }: EmailTemplateProps) {
   return (
@@ -124,9 +125,9 @@ export function EmailTemplate({
                   verticalAlign: "top",
                 }}
               >
-                Service Required
+                Role
               </td>
-              <td style={{ padding: "10px 0", fontSize: "15px" }}>{serviceRequired}</td>
+              <td style={{ padding: "10px 0", fontSize: "15px" }}>{role}</td>
             </tr>
 
             <tr style={{ borderTop: "1px solid #e2e8f0" }}>
@@ -138,9 +139,9 @@ export function EmailTemplate({
                   verticalAlign: "top",
                 }}
               >
-                Weekly Deliveries
+                Region
               </td>
-              <td style={{ padding: "10px 0", fontSize: "15px" }}>{weeklyDeliveries}</td>
+              <td style={{ padding: "10px 0", fontSize: "15px" }}>{region}</td>
             </tr>
 
             <tr style={{ borderTop: "1px solid #e2e8f0" }}>
@@ -179,7 +180,7 @@ export function EmailTemplate({
             color: "#92400e",
           }}
         >
-          Reply directly to this email to respond to {name}.
+          Reply directly to this email to respond to {name}. Shezuna, {site.address}.
         </div>
       </div>
     </div>

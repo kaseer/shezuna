@@ -1,40 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shezuna
 
-## Getting Started
+Marketing site for Shezuna, a Yorkshire fleet and multi-drop logistics partner. Built with Next.js (App Router), TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Prerequisites
+
+- Node.js 20 or newer
+- npm
+
+## Run locally
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The contact form posts to `/api/contact` and sends mail through [Resend](https://resend.com). Without `RESEND_API_KEY`, the API returns a configuration error and the rest of the site still runs.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
 
-## Learn More
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the development server |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run ESLint |
 
-To learn more about Next.js, take a look at the following resources:
+## Environment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Copy `.env.example` to `.env.local`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `RESEND_API_KEY` | For live email | Resend API key |
+| `CONTACT_TO_EMAIL` | No | Inbox that receives enquiries. Defaults to `ops@shezuna.co.uk` |
+| `CONTACT_FROM_EMAIL` | No | From address. Must use a domain verified in Resend |
+| `RESEND_TEST_RECIPIENT` | No | Owner inbox used when the Resend account is still in testing mode |
 
-## Deploy on Vercel
+## Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `app/` — routes, metadata, sitemap, and the contact API
+- `src/components/ui/` — shared buttons, layout, and motion primitives
+- `src/components/sections/` — header, footer, and page sections
+- `src/lib/` — site content, validation, and JSON-LD helpers
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Pages
 
-# shezuna
+- `/` home
+- `/services`
+- `/coverage`
+- `/subcontractors`
+- `/about`
+- `/contact`
+- `/privacy` and `/terms`
 
-# shezuna
+Older service URLs (`/last-mile-delivery-leeds` and the other Leeds landing pages) stay in place for search.

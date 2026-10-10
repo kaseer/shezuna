@@ -1,20 +1,21 @@
 import type { MetadataRoute } from "next";
+import { legacyPaths, sitemapEntries } from "@/src/lib/seo";
+import { site } from "@/src/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://shezuna.co.uk";
-  const routes = [
-    "",
-    "/last-mile-delivery-leeds",
-    "/fleet-delivery-solutions",
-    "/logistics-subcontractor-leeds",
-    "/same-day-delivery-leeds",
-    "/courier-services-leeds",
-  ];
-
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
+  const primary = sitemapEntries().map((entry) => ({
+    url: entry.path === "/" ? site.url : `${site.url}${entry.path}`,
     lastModified: new Date(),
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : 0.8,
+    changeFrequency: entry.changeFrequency,
+    priority: entry.priority,
   }));
+
+  const legacy = legacyPaths.map((path) => ({
+    url: `${site.url}${path}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.5,
+  }));
+
+  return [...primary, ...legacy];
 }

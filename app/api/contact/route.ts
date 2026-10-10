@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { contactSchema } from "@/src/lib/contact-schema";
+import { contactSchema, REGION_LABELS, ROLE_LABELS } from "@/src/lib/contact-schema";
 import { EmailTemplate } from "@/src/components/email-template";
 import { getResendClient } from "@/src/lib/resend";
 
@@ -116,21 +116,21 @@ export async function POST(request: Request) {
     const company = sanitizeText(parsed.data.company);
     const email = sanitizeText(parsed.data.email);
     const phone = sanitizeText(parsed.data.phone);
-    const serviceRequired = sanitizeText(parsed.data.serviceRequired);
-    const weeklyDeliveries = sanitizeText(parsed.data.weeklyDeliveries);
+    const role = ROLE_LABELS[parsed.data.role];
+    const region = REGION_LABELS[parsed.data.region];
     const message = sanitizeText(parsed.data.message);
 
     const emailPayload = {
       to: [TO_EMAIL],
       replyTo: email,
-      subject: `New enquiry from ${name} — Shezuna`,
+      subject: `New ${role.toLowerCase()} enquiry from ${name} — Shezuna`,
       react: EmailTemplate({
         name,
         company,
         email,
         phone,
-        serviceRequired,
-        weeklyDeliveries,
+        role,
+        region,
         message,
       }),
     };

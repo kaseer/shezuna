@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 type RevealProps = {
@@ -9,14 +9,17 @@ type RevealProps = {
   delay?: number;
 };
 
+/** Fade and rise content as it enters the viewport. */
 export function Reveal({ children, className, delay = 0 }: RevealProps) {
+  const reduce = useReducedMotion();
+
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 24 }}
+      initial={reduce ? false : { opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: "easeOut", delay }}
+      transition={{ duration: reduce ? 0 : 0.55, ease: "easeOut", delay: reduce ? 0 : delay }}
     >
       {children}
     </motion.div>

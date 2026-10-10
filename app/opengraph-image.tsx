@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Shezuna: Smart Logistics. Proven Reliability.";
+export const alt = "Shezuna fleet and multi-drop logistics across Yorkshire";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -41,7 +41,7 @@ export default function OgImage() {
             height: 500,
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(245,158,11,0.28) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(16,185,129,0.28) 0%, transparent 70%)",
           }}
         />
 
@@ -72,14 +72,13 @@ export default function OgImage() {
         >
           {/* Top: Logo mark + brand name */}
           <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-            {/* Actual Shezuna logo mark from icon.svg */}
+            {/* ImageResponse cannot use next/image. This is the same mark as /icon.svg. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPg0KICA8dGl0bGUgaWQ9InRpdGxlIj5TaGV6dW5hIGZhdmljb248L3RpdGxlPg0KICA8ZGVzYyBpZD0iZGVzYyI+QSBwcmVtaXVtIG5hdnkgc3F1YXJlIHdpdGggYW4gb3JhbmdlIHJvdXRlIGxpbmUgYW5kIHdoaXRlIFMgZm9yIFNoZXp1bmEgbG9naXN0aWNzLjwvZGVzYz4NCiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMwODE0MjUiIC8+DQogIDxwYXRoIGQ9Ik0xOCAyMEMxOCAxNS41ODIgMjEuNTgyIDEyIDI2IDEySDQ2VjIwSDI3QzI1LjM0MyAyMCAyNCAyMS4zNDMgMjQgMjNDMjQgMjQuNjU3IDI1LjM0MyAyNiAyNyAyNkgzN0M0My4wNzUgMjYgNDggMzAuOTI1IDQ4IDM3QzQ4IDQzLjA3NSA0My4wNzUgNDggMzcgNDhIMTZWNDBIMzZDMzcuNjU3IDQwIDM5IDM4LjY1NyAzOSAzN0MzOSAzNS4zNDMgMzcuNjU3IDM0IDM2IDM0SDI2QzIxLjU4MiAzNCAxOCAzMC40MTggMTggMjZWMjBaIiBmaWxsPSIjRjhGQUZDIiAvPg0KICA8cGF0aCBkPSJNNDcgMTRDNDkuNzYxIDE0IDUyIDE2LjIzOSA1MiAxOUM1MiAyMS43NjEgNDkuNzYxIDI0IDQ3IDI0QzQ0LjIzOSAyNCA0MiAyMS43NjEgNDIgMTlDNDIgMTYuMjM5IDQ0LjIzOSAxNCA0NyAxNFoiIGZpbGw9IiNGNTlFMEIiIC8+DQogIDxwYXRoIGQ9Ik0xMiA0NkMxMiA0My43OTEgMTMuNzkxIDQyIDE2IDQySDI2VjUwSDE2QzEzLjc5MSA1MCAxMiA0OC4yMDkgMTIgNDZaIiBmaWxsPSIjRjU5RTBCIiAvPg0KPC9zdmc+DQo="
-              alt="Shezuna logo"
+              src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='9' fill='%230c1c33'/%3E%3Cpath d='M8 18.5h9.2l2.6-4.2H26' fill='none' stroke='%237dd3fc' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='26' cy='14.3' r='2.1' fill='%2334d399'/%3E%3Cpath d='M9.2 23h8.4' fill='none' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round'/%3E%3Ccircle cx='9.2' cy='23' r='2' fill='%2360a5fa'/%3E%3Ccircle cx='20.2' cy='23' r='2' fill='%23ffffff'/%3E%3C/svg%3E"
+              alt=""
               width={72}
               height={72}
-              style={{ borderRadius: 18 }}
             />
 
             <span
@@ -97,8 +96,8 @@ export default function OgImage() {
             <div
               style={{
                 marginLeft: 16,
-                background: "rgba(245,158,11,0.15)",
-                border: "1px solid rgba(245,158,11,0.4)",
+                background: "rgba(52,211,153,0.15)",
+                border: "1px solid rgba(52,211,153,0.45)",
                 borderRadius: 100,
                 padding: "6px 18px",
                 display: "flex",
@@ -109,12 +108,12 @@ export default function OgImage() {
                 style={{
                   fontSize: 14,
                   fontWeight: 600,
-                  color: "#f59e0b",
+                  color: "#34d399",
                   textTransform: "uppercase",
                   letterSpacing: "0.12em",
                 }}
               >
-                Leeds, UK
+                Yorkshire, UK
               </span>
             </div>
           </div>
@@ -131,8 +130,8 @@ export default function OgImage() {
                 maxWidth: 840,
               }}
             >
-              Smart Logistics.{" "}
-              <span style={{ color: "#f59e0b" }}>Proven Reliability.</span>
+              Fleet &amp; multi-drop.{" "}
+              <span style={{ color: "#7dd3fc" }}>Across Yorkshire.</span>
             </span>
             <span
               style={{
@@ -143,17 +142,17 @@ export default function OgImage() {
                 fontWeight: 400,
               }}
             >
-              Data-backed delivery solutions for Leeds businesses. Express
-              delivery, B2B logistics & last-mile solutions.
+              Reliable drivers, per-parcel capacity, and depots in Leeds,
+              Bradford, York, and Doncaster.
             </span>
           </div>
 
           {/* Bottom: Stats bar */}
           <div style={{ display: "flex", gap: 48, alignItems: "flex-end" }}>
             {[
-              { value: "99.2%", label: "On-time dispatch" },
-              { value: "30 min", label: "Quote response time" },
-              { value: "7 days", label: "Operating coverage" },
+              { value: "100%", label: "On-time delivery" },
+              { value: "50+", label: "Active vans" },
+              { value: "4 hubs", label: "Yorkshire coverage" },
             ].map((stat) => (
               <div
                 key={stat.label}
@@ -195,7 +194,7 @@ export default function OgImage() {
                   width: 8,
                   height: 8,
                   borderRadius: "50%",
-                  background: "#f59e0b",
+                  background: "#34d399",
                 }}
               />
               <span

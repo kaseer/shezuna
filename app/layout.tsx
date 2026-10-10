@@ -1,81 +1,43 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Manrope, Plus_Jakarta_Sans } from "next/font/google";
+import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "sonner";
 import { InteractionTracker } from "@/src/components/analytics/interaction-tracker";
+import { SiteFooter } from "@/src/components/sections/site-footer";
+import { SiteHeader } from "@/src/components/sections/site-header";
+import { pageMetadata, pages } from "@/src/lib/seo";
+import { site } from "@/src/lib/site";
 import "./globals.css";
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-});
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://shezuna.co.uk"),
-  title: {
-    default: "Logistics Company Leeds | Last-Mile Delivery & Fleet Solutions | Shezuna",
-    template: "%s | Shezuna",
-  },
-  alternates: {
-    canonical: "https://shezuna.co.uk",
-  },
-  icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
-    apple: "/icon.svg",
-  },
-  description:
-    "Professional logistics and last-mile delivery services across Leeds and Yorkshire. Fleet support, subcontract logistics, and reliable delivery solutions for businesses.",
-  keywords: [
-    "Shezuna",
-    "Logistics in Leeds",
-    "Express delivery Leeds",
-    "B2B logistics",
-    "Last-mile delivery",
-  ],
-  openGraph: {
-    title: "Shezuna: Smart Logistics. Proven Reliability.",
-    description:
-      "Data-backed delivery solutions for Leeds businesses. Fast dispatch, transparent operations, and dependable service.",
-    url: "https://shezuna.co.uk",
-    siteName: "Shezuna",
-    locale: "en_GB",
-    type: "website",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "Shezuna: Smart Logistics. Proven Reliability.",
-        type: "image/png",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Shezuna: Smart Logistics. Proven Reliability.",
-    description:
-      "Data-backed delivery solutions for Leeds businesses. Fast dispatch, transparent operations, and dependable service.",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "Shezuna: Smart Logistics. Proven Reliability.",
-      },
-    ],
-  },
-};
+const themeScript = `(function(){try{var t=localStorage.getItem("shezuna-theme");var d=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(d)document.documentElement.classList.add("dark");}catch(e){}})();`;
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    ...pageMetadata(pages.home),
+    metadataBase: new URL(site.url),
+    title: {
+      default: pages.home.title,
+      template: "%s | Shezuna",
+    },
+    icons: {
+      icon: "/icon.svg",
+      shortcut: "/icon.svg",
+      apple: "/icon.svg",
+    },
+  };
+}
 
 export default function RootLayout({
   children,
@@ -85,10 +47,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${plusJakarta.variable} ${jetBrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${plusJakarta.variable} ${jetBrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        {children}
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="flex min-h-full flex-col bg-background text-foreground">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-electric focus:px-4 focus:py-2 focus:text-on-electric"
+        >
+          Skip to content
+        </a>
+        <SiteHeader />
+        <div id="main" className="flex-1">
+          {children}
+        </div>
+        <SiteFooter />
         <Toaster richColors position="top-right" />
         <Analytics />
         <InteractionTracker />
