@@ -20,12 +20,12 @@ export default function Home() {
       <JsonLd data={logisticsSchema()} />
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }])} />
       <Hero />
-      <TrustBar />
       <Coverage />
       <Services />
       <WhyShezuna />
       <Subcontractors />
       <ContactSection />
+      <TrustBar />
     </>
   );
 }
