@@ -37,8 +37,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       />
       <PageHero
         eyebrow="Contact"
-        title="Request fleet capacity or partner on routes"
-        description="Share your company, role, and region. The Leeds desk replies with availability, rate-card guidance, or an onboarding slot."
+        title="Discuss a Yorkshire route, or a longer UK journey"
+        description="Tell us whether you need a regular Yorkshire route or a longer journey across the United Kingdom. The Leeds desk replies with availability and a quotation."
       />
       <ContactSection defaultRole={role} defaultRegion={region} />
     </>

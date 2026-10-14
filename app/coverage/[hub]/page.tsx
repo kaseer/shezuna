@@ -46,7 +46,7 @@ export default async function HubCoveragePage({ params }: HubPageProps) {
         <Container className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <h2 className="font-display text-3xl font-semibold tracking-tight text-ink">
-              {place.name} depot proximity and deployment
+              {place.name} coverage
             </h2>
             <p className="mt-4 text-base leading-8 text-muted">{place.summary}</p>
             <ul className="mt-6 space-y-3">
@@ -59,7 +59,7 @@ export default async function HubCoveragePage({ params }: HubPageProps) {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href={`/contact?role=client&region=${hub}`}>Request {place.name} capacity</Button>
               <Button href="/coverage" variant="outline">
-                All Yorkshire hubs
+                All coverage areas
               </Button>
             </div>
           </div>

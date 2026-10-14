@@ -10,10 +10,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const requirements = [
-  "LWB or XLWB van in roadworthy condition",
-  "Right to work and standard driver compliance",
-  "Willingness to follow scan and handover process",
-  "Availability aligned to a Leeds, Bradford, York, or Doncaster depot",
+  "A roadworthy van suited to the work",
+  "A driving licence, right to work, and insurance you can show us",
+  "Willingness to follow the handover agreed for that job",
+  "Availability for Yorkshire local routes, and for longer UK journeys where you are willing to travel",
 ];
 
 export default function SubcontractorsPage() {
@@ -27,8 +27,8 @@ export default function SubcontractorsPage() {
       />
       <PageHero
         eyebrow="Drivers & fleet owners"
-        title="Bring the van. We bring the volume."
-        description="Shezuna works with owner-drivers and small fleets that have spare capacity and want regular multi-drop or dedicated work."
+        title="Offer capacity for Yorkshire routes, and for longer UK journeys"
+        description="Owner-drivers and small fleets may place suitable vehicles on regular Yorkshire routes, and on longer journeys when a client booking requires them."
       />
       <section className="py-16">
         <div className="mx-auto grid w-full max-w-7xl gap-6 px-5 sm:px-6 lg:grid-cols-2 lg:px-8">
@@ -45,11 +45,12 @@ export default function SubcontractorsPage() {
           <article className="rounded-3xl border border-border bg-surface p-7">
             <h2 className="text-2xl font-semibold tracking-tight text-ink">What you can expect</h2>
             <p className="mt-4 text-sm leading-7 text-muted">
-              Flexible rates agreed before the first route, consistent daily volume where the work exists, and a short
-              onboarding so you are not waiting weeks to start. The desk stays available while you are out.
+              The terms are settled before the first route, and the Leeds desk remains your contact while you are out.
+              Yorkshire local work is the core. Longer journeys across the United Kingdom are offered when a client
+              booking requires them.
             </p>
             <p className="mt-4 text-sm leading-7 text-muted">
-              Most partners run from one of the four hubs. Tell us which yard is closest and the days you can cover.
+              Tell us where you are based and which days you can cover. Assignments are coordinated from Leeds.
             </p>
           </article>
         </div>

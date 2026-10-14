@@ -10,7 +10,7 @@ import { hubs, type HubId } from "@/src/lib/site";
 import { cn } from "@/src/lib/utils";
 
 const filters: { id: HubId | "all"; label: string }[] = [
-  { id: "all", label: "All hubs" },
+  { id: "all", label: "All areas" },
   ...hubs.map((hub) => ({ id: hub.id, label: hub.name })),
 ];
 
@@ -20,11 +20,11 @@ type CoverageProps = {
   description?: string;
 };
 
-/** Filterable depot board. Selecting a hub highlights its card and the map node. */
+/** Filterable coverage board. Selecting an area highlights its card and the map node. */
 export function Coverage({
   heading = true,
-  title = "Depot coverage in Leeds, Bradford, York and Doncaster",
-  description = "Choose a hub for courier subcontracting, van delivery, or multi-drop fleet capacity.",
+  title = "Areas we cover from Leeds",
+  description = "Regular local drops across Leeds, Bradford, York, and Doncaster. Longer depot-to-depot and fleet-transfer work can be undertaken across the United Kingdom.",
 }: CoverageProps) {
   const [active, setActive] = useState<HubId | "all">("all");
 
@@ -44,11 +44,11 @@ export function Coverage({
             <div className="h-80 text-ink sm:h-[28rem]">
               <NetworkMap activeId={active} onSelect={setActive} />
             </div>
-            <p className="px-2 pb-1 text-xs text-muted">Select a hub on the map or use the filters.</p>
+            <p className="px-2 pb-1 text-xs text-muted">Select an area on the map or use the filters.</p>
           </div>
 
           <div>
-            <div className="flex flex-wrap gap-2" role="toolbar" aria-label="Filter hubs">
+            <div className="flex flex-wrap gap-2" role="toolbar" aria-label="Filter coverage areas">
               {filters.map((filter) => {
                 const selected = active === filter.id;
                 return (

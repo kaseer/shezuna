@@ -4,7 +4,7 @@ import { ArticleLayout } from "@/src/components/sections/article-layout";
 export const metadata: Metadata = {
   title: "Courier Services Leeds",
   description:
-    "Reliable courier services in Leeds with last-mile expertise, flexible fleet support, and SLA-focused delivery performance.",
+    "Courier van cover in Leeds, arranged from our Leeds desk when the route and the rate are agreed.",
   alternates: {
     canonical: "https://shezuna.co.uk/courier-services-leeds",
   },
@@ -14,12 +14,12 @@ export default function CourierServicesLeedsPage() {
   return (
     <ArticleLayout eyebrow="Courier" title="Courier Services in Leeds">
       <p>
-        Shezuna delivers courier support for businesses that need dependable collection, accurate handover, and reliable
-        service quality across Leeds and Yorkshire.
+        Shezuna arranges courier vans for local collections and handovers across Yorkshire. Where a journey extends
+        further, we can also undertake longer movements across the United Kingdom. Times and rates are agreed when you book.
       </p>
       <p>
-        Our operations are designed for consistency and transparency, helping teams protect customer experience while
-        scaling daily delivery demand.
+        Shezuna is an independent Leeds operator and undertakes each engagement in its own name. Vehicles are
+        introduced to suit the booking, rather than drawn from a standing fleet.
       </p>
     </ArticleLayout>
   );

@@ -1,25 +1,14 @@
 import { Container } from "@/src/components/ui/container";
 
-const networks = ["Evri", "DPD", "Yodel"];
-
 export function TrustBar() {
   return (
-    <section className="border-y border-border bg-surface/70" aria-label="Carrier networks">
-      <Container className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-muted">
-          <span className="font-semibold text-ink">Partner-ready operations</span>
-          {" "}for carrier networks. Shezuna is an independent subcontractor.
+    <section className="border-y border-border bg-surface/70" aria-label="How Shezuna operates">
+      <Container className="py-6">
+        <p className="text-sm leading-6 text-muted">
+          <span className="font-semibold text-ink">Yorkshire local delivery, first.</span> Regular routes and drops
+          across the region are our principal work. For longer journeys we can travel across the United Kingdom,
+          including depot-to-depot movements and fleet transfers. Shezuna undertakes each engagement in its own name.
         </p>
-        <ul className="flex flex-wrap gap-2">
-          {networks.map((name) => (
-            <li
-              key={name}
-              className="rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold tracking-wide text-ink"
-            >
-              {name}
-            </li>
-          ))}
-        </ul>
       </Container>
     </section>
   );

@@ -21,12 +21,12 @@ export default function CoveragePage() {
       />
       <PageHero
         eyebrow="Coverage"
-        title="Logistics coverage for Leeds, Bradford, York and Doncaster"
-        description="Leeds is the primary desk. Bradford, York and Doncaster extend the same multi-drop fleet so volume stays close to the depot."
+        title="Local coverage across Yorkshire"
+        description="Regular local drops across Leeds, Bradford, York, and Doncaster. Longer depot-to-depot and fleet-transfer work can be undertaken across the United Kingdom."
       />
       <Coverage
-        title="Choose a depot for multi-drop fleet capacity"
-        description="Open a city page for courier subcontracting in Leeds, van delivery in Bradford, fleet supply in York, or Doncaster multi-drop capacity."
+        title="Yorkshire areas we attend locally"
+        description="Leeds, Bradford, York, and Doncaster are the heart of our local work. Longer UK journeys are arranged from the same Leeds desk."
       />
     </>
   );

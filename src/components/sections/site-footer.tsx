@@ -11,7 +11,7 @@ export function SiteFooter() {
         <div>
           <Logo tone="inverse" />
           <p className="mt-4 max-w-xs text-sm leading-6 text-slate-400">
-            Fleet capacity and multi-drop logistics for carriers and businesses across Yorkshire.
+            Regular local drops across Yorkshire. Long-distance work across the UK, including depot-to-depot movements and fleet transfers.
           </p>
           <ul className="mt-5 space-y-2 text-sm">
             <li>

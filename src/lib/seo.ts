@@ -41,7 +41,7 @@ export const pages = {
     path: "/",
     title: "Logistics Subcontracting Yorkshire | Shezuna",
     description:
-      "Logistics subcontracting across Yorkshire for depot managers. Multi-drop fleet capacity in Leeds, Bradford, York and Doncaster.",
+      "Regular local drops across Yorkshire. Longer depot-to-depot and fleet-transfer work can be undertaken across the UK.",
     imageAlt: "Shezuna logistics subcontracting across Leeds, Bradford, York and Doncaster",
     keywords: [
       "logistics subcontracting Yorkshire",
@@ -55,9 +55,9 @@ export const pages = {
     path: "/services",
     title: "B2B Parcel Distribution Yorkshire | Shezuna",
     description:
-      "B2B parcel distribution across Yorkshire, with XLWB van contracts and overflow cover in Leeds, Bradford, York and Doncaster.",
-    imageAlt: "Shezuna B2B parcel distribution and XLWB fleet capacity in Yorkshire",
-    keywords: ["B2B parcel distribution Yorkshire", "XLWB van hire contract", "courier fleet management UK"],
+      "Yorkshire local delivery routes, with long-distance depot-to-depot and fleet transfers across the United Kingdom.",
+    imageAlt: "Shezuna parcel distribution and varied van fleet across Yorkshire",
+    keywords: ["B2B parcel distribution Yorkshire", "Yorkshire van capacity", "courier fleet management UK"],
     changeFrequency: "monthly",
     priority: 0.8,
   },
@@ -65,19 +65,19 @@ export const pages = {
     path: "/coverage",
     title: "Yorkshire Logistics Coverage | Shezuna",
     description:
-      "Logistics coverage for Leeds, Bradford, York and Doncaster. Multi-drop fleet capacity released from the nearest depot.",
-    imageAlt: "Map of Shezuna depot coverage in Leeds, Bradford, York and Doncaster",
-    keywords: ["logistics subcontracting Yorkshire", "Yorkshire depot coverage"],
+      "Local drops across Leeds, Bradford, York and Doncaster. Longer UK journeys are arranged from our Leeds desk.",
+    imageAlt: "Map of areas Shezuna covers from Leeds: Bradford, York and Doncaster",
+    keywords: ["logistics subcontracting Yorkshire", "Yorkshire van coverage"],
     changeFrequency: "monthly",
     priority: 0.9,
   },
   subcontractors: {
     path: "/subcontractors",
-    title: "XLWB Van Contract Partners | Shezuna",
+    title: "Yorkshire Van Partners | Shezuna",
     description:
-      "XLWB and LWB owners can take multi-drop routes in Leeds, Bradford, York and Doncaster with agreed rates.",
-    imageAlt: "Shezuna XLWB van subcontracting routes across Yorkshire",
-    keywords: ["XLWB van hire contract", "courier fleet management UK"],
+      "Owners of suitable vans can ask about Yorkshire routes. Work is offered only after the rate is agreed.",
+    imageAlt: "Shezuna van subcontracting routes across Yorkshire",
+    keywords: ["Yorkshire van capacity", "courier fleet management UK"],
     changeFrequency: "monthly",
     priority: 0.7,
   },
@@ -85,8 +85,8 @@ export const pages = {
     path: "/about",
     title: "About Shezuna Yorkshire Logistics",
     description:
-      "Shezuna is a Leeds-based logistics subcontracting desk covering Bradford, York and Doncaster for depot and transport teams.",
-    imageAlt: "Shezuna Yorkshire logistics team based in Leeds",
+      "Leeds-based desk for regular Yorkshire routes, able to undertake depot-to-depot and fleet transfers across the UK.",
+    imageAlt: "Shezuna logistics desk based in Leeds",
     keywords: ["logistics subcontracting Yorkshire", "Shezuna"],
     changeFrequency: "monthly",
     priority: 0.6,
@@ -95,7 +95,7 @@ export const pages = {
     path: "/contact",
     title: "Request Yorkshire Fleet Capacity",
     description:
-      "Request multi-drop fleet capacity in Leeds, Bradford, York or Doncaster. For depot, transport and procurement leads.",
+      "Request a Yorkshire local route, or a longer UK journey. The Leeds desk replies with availability and a quotation.",
     imageAlt: "Contact Shezuna for Yorkshire fleet and multi-drop capacity",
     keywords: ["logistics fleet provider York", "courier subcontractor Leeds"],
     changeFrequency: "monthly",
@@ -130,17 +130,17 @@ export const regions: Record<
     title: "Courier Subcontractor Leeds | Shezuna",
     description:
       "Courier subcontractor in Leeds for multi-drop rounds and overflow. Also serving Bradford, York and Doncaster.",
-    imageAlt: "Shezuna courier subcontractor fleet operating in Leeds",
+    imageAlt: "Shezuna van cover arranged from Leeds",
     keywords: ["courier sub-contractor Leeds", "logistics subcontracting Yorkshire"],
     changeFrequency: "monthly",
     priority: 0.9,
     h1: "Courier subcontractor in Leeds",
     intro:
-      "Leeds is the primary desk for multi-drop rounds, trunk collections, and overflow when a carrier hub needs extra vans the same day.",
+      "Leeds is our only desk. We arrange multi-drop and extra vans for Leeds when the route, the rate, and the start time are agreed.",
     points: [
-      "City-centre and ring-road multi-drop coverage",
-      "Overflow capacity for peak and failed collections",
-      "LWB and XLWB vans matched to the parcel profile",
+      "City and ring-road multi-drop cover",
+      "Extra vans when your own vehicles are already out",
+      "A vehicle matched to the delivery in hand",
     ],
   },
   bradford: {
@@ -154,11 +154,11 @@ export const regions: Record<
     priority: 0.9,
     h1: "Van delivery partner in Bradford",
     intro:
-      "Bradford rounds run from a short hop off the Leeds hub, so West Yorkshire overflow does not have to wait on a distant yard.",
+      "Bradford and the neighbouring towns are attended from Leeds, with the vehicle and the timing settled when the booking is made.",
     points: [
-      "Urban and town rounds across Bradford",
-      "Same rate-card logic as the Leeds core",
-      "Fast deployment for depot managers who are already full",
+      "Town and urban rounds across Bradford",
+      "Rate agreed for that booking",
+      "Asked for when your own vans are already out",
     ],
   },
   york: {
@@ -172,11 +172,11 @@ export const regions: Record<
     priority: 0.9,
     h1: "Logistics fleet provider in York",
     intro:
-      "York keeps northern city and ring-road work on local vans, with the Leeds desk still owning communication and exceptions.",
+      "York city and ring-road work is coordinated from our Leeds desk, with the vehicle and the timing settled when you book.",
     points: [
-      "Dedicated and multi-drop release from the York hub",
-      "Timed B2B collections and handovers",
-      "Capacity that does not strip the Leeds core",
+      "Multi-drop and dedicated vans for York",
+      "Collection and delivery times agreed up front",
+      "Booked through the Leeds desk",
     ],
   },
   doncaster: {
@@ -185,16 +185,16 @@ export const regions: Record<
     description:
       "Multi-drop fleet capacity in Doncaster for south Yorkshire rounds. Also serving Leeds, Bradford and York.",
     imageAlt: "Shezuna multi-drop fleet capacity in Doncaster",
-    keywords: ["multi-drop fleet capacity Doncaster", "Evri DPD overflow delivery partner"],
+    keywords: ["multi-drop fleet capacity Doncaster", "Yorkshire van cover"],
     changeFrequency: "monthly",
     priority: 0.9,
     h1: "Multi-drop fleet capacity in Doncaster",
     intro:
-      "Doncaster is the south Yorkshire gateway for multi-drop and freight handover, linked back to the Leeds control desk.",
+      "Doncaster and the surrounding south Yorkshire rounds are coordinated from Leeds, and the vehicle is confirmed once the route is agreed.",
     points: [
       "South Yorkshire multi-drop and van freight",
-      "Overflow when a hub's own fleet is fully booked",
-      "Partner-ready scanning and handover discipline",
+      "Extra vans when a client's own fleet is fully booked",
+      "Handover steps agreed before the first drop",
     ],
   },
 };

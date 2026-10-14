@@ -24,8 +24,8 @@ export function Services({ detailed = false, heading = true }: ServicesProps) {
         {heading ? (
           <SectionHeading
             eyebrow="Services"
-            title="Multi-drop courier, fleet capacity and overflow"
-            description="B2B parcel distribution for depot and transport managers: multi-drop rounds, dedicated XLWB vans, and peak overflow."
+            title="Yorkshire local routes, with longer UK work when required"
+            description="Regular local delivery routes and drops across Yorkshire remain our principal work. Longer journeys, including depot-to-depot movements and fleet transfers, can be undertaken across the United Kingdom."
           />
         ) : null}
 

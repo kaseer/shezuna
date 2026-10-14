@@ -41,7 +41,7 @@ export function Hero() {
             variants={fade}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-bright" aria-hidden="true" />
-            Yorkshire fleet partner
+            Leeds-based
           </motion.p>
 
           <motion.h1
@@ -64,7 +64,7 @@ export function Hero() {
             custom={0.16}
             variants={fade}
           >
-            Reliable drivers, rates that scale per parcel, and depot coverage in Leeds, Bradford, York, and Doncaster.
+            Our principal work is regular local delivery routes and drops across Yorkshire. Where a journey extends further, we can travel across the United Kingdom, including depot-to-depot movements and fleet transfers.
           </motion.p>
 
           <motion.div
@@ -92,8 +92,8 @@ export function Hero() {
         >
           <div className="glass relative overflow-hidden rounded-3xl p-4 sm:p-6">
             <div className="flex items-center justify-between px-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">Live network</p>
-              <p className="text-xs text-emerald">Four depots online</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">Coverage</p>
+              <p className="text-xs text-emerald">Run from the Leeds desk</p>
             </div>
             <div className="mt-2 h-72 text-ink sm:h-80">
               <NetworkMap />

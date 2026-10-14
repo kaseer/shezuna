@@ -21,24 +21,28 @@ export default function AboutPage() {
       />
       <PageHero
         eyebrow="About"
-        title="A Yorkshire desk for fleets that need to stay reliable"
-        description="Shezuna helps carriers and businesses cover multi-drop and dedicated van work without standing up a yard of their own."
+        title="A Leeds desk for Yorkshire routes, and further when required"
+        description="Regular local delivery routes and drops across Yorkshire are our principal work. We can also undertake long-distance journeys across the United Kingdom."
       />
       <section className="py-16">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <div className="space-y-4 text-base leading-8 text-muted">
             <p>
-              We are based in Leeds and operate across Bradford, York, and Doncaster. The work is practical: vetted
-              drivers, parcel-size rate cards, and a desk that stays in touch while routes are live.
+              Shezuna is established at 206 Roundhay Road, Leeds. Our principal work is regular local delivery routes
+              and drops across Yorkshire, taking in Leeds, Bradford, York, and Doncaster. Where a journey extends
+              beyond the region, we are able to travel across the United Kingdom, including depot-to-depot movements
+              and fleet transfers.
             </p>
             <p>
-              Clients use Shezuna when their own fleet is full, when a carrier network needs a subcontract partner, or
-              when peak volume should not become missed deliveries. Subcontractors use Shezuna when they have LWB or
-              XLWB capacity and want regular rounds.
+              Businesses approach us when their own vehicles are fully committed. Drivers and fleet owners approach us
+              when they have suitable vehicles they wish to place. A route is extended once the commercial terms are
+              settled and, in the case of a driver, once licence, right to work, and insurance have been reviewed.
             </p>
             <p>
-              The operating promise is simple. Match the van to the parcel, release it from the nearest depot, and keep
-              communication clear until the handover is done.
+              The fleet is varied, and the drivers are experienced, so each booking can be matched to the delivery in
+              hand, whether that is a local drop or a longer movement. The Leeds desk remains the point of contact for
+              the life of the booking. Progress is confirmed with you directly, and each engagement is quoted on its own
+              merits.
             </p>
           </div>
           <aside className="rounded-3xl border border-border bg-surface p-7">
@@ -49,12 +53,16 @@ export default function AboutPage() {
                 <dd className="font-semibold text-ink">{site.address}</dd>
               </div>
               <div>
-                <dt className="text-muted">Hubs</dt>
-                <dd className="font-semibold text-ink">Leeds, Bradford, York, Doncaster</dd>
+                <dt className="text-muted">Main focus</dt>
+                <dd className="font-semibold text-ink">Regular local routes across Yorkshire</dd>
+              </div>
+              <div>
+                <dt className="text-muted">Longer work</dt>
+                <dd className="font-semibold text-ink">Depot-to-depot and fleet transfers across the UK</dd>
               </div>
               <div>
                 <dt className="text-muted">Fleet</dt>
-                <dd className="font-semibold text-ink">LWB and XLWB vans</dd>
+                <dd className="font-semibold text-ink">A varied fleet, with experienced drivers</dd>
               </div>
               <div>
                 <dt className="text-muted">Desk</dt>

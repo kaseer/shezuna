@@ -20,8 +20,8 @@ export default function ServicesPage() {
       />
       <PageHero
         eyebrow="Services"
-        title="B2B parcel distribution across Yorkshire"
-        description="Multi-drop courier rounds, dedicated XLWB fleet capacity, peak overflow, and express van freight from Leeds, Bradford, York and Doncaster."
+        title="Yorkshire local routes, with long-distance work across the UK"
+        description="Regular local delivery routes and drops across Yorkshire. Longer journeys, including depot-to-depot movements and fleet transfers, across the United Kingdom."
       />
       <Services detailed />
     </>

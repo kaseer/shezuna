@@ -11,7 +11,7 @@ const areaServed = hubs.map((hub) => ({
   },
 }));
 
-/** LocalBusiness plus logistics services for the four Yorkshire depots. */
+/** LocalBusiness plus the services offered from the Leeds desk. */
 export function logisticsSchema(focus?: HubId) {
   const served = focus
     ? areaServed.filter((area) => area.name.toLowerCase() === focus)
@@ -37,7 +37,7 @@ export function logisticsSchema(focus?: HubId) {
           addressRegion: "Yorkshire",
           addressCountry: "GB",
         },
-        areaServed: served,
+        areaServed: [...served, { "@type": "Country", name: "United Kingdom" }],
         brand: {
           "@type": "Brand",
           name: "Shezuna",
@@ -64,7 +64,10 @@ export function logisticsSchema(focus?: HubId) {
         name: service.title,
         serviceType: service.slug === "multi-drop" ? "Multi-drop Courier" : "Fleet Capacity",
         provider: { "@id": businessId },
-        areaServed: served,
+        areaServed:
+          service.slug === "b2b-express"
+            ? [...served, { "@type": "Country", name: "United Kingdom" }]
+            : served,
         brand: { "@type": "Brand", name: "Shezuna" },
         description: service.summary,
       })),

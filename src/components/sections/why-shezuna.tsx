@@ -11,7 +11,7 @@ export function WhyShezuna() {
         <SectionHeading
           eyebrow="Why Shezuna"
           title="Why depot and transport managers use Shezuna"
-          description="Vetted drivers, parcel-size rate cards, live desk communication, and fleet scale across four Yorkshire hubs."
+          description="A Leeds desk devoted to regular Yorkshire routes, and able to undertake longer depot-to-depot and fleet-transfer work across the United Kingdom."
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {valueProps.map((item, index) => {

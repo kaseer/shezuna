@@ -4,7 +4,7 @@ import { ArticleLayout } from "@/src/components/sections/article-layout";
 export const metadata: Metadata = {
   title: "Same-Day Delivery Leeds",
   description:
-    "Professional same-day delivery in Leeds and Yorkshire with responsive dispatch, reliable drivers, and transparent communication.",
+    "Same-day van requests in Leeds, accepted only when we can agree the time and the rate before collection.",
   alternates: {
     canonical: "https://shezuna.co.uk/same-day-delivery-leeds",
   },
@@ -14,12 +14,12 @@ export default function SameDayDeliveryLeedsPage() {
   return (
     <ArticleLayout eyebrow="Same day" title="Same-Day Delivery Services in Leeds">
       <p>
-        Shezuna supports urgent same-day delivery requirements with responsive dispatch, dependable route execution, and
-        professional handover standards.
+        Ask the Leeds desk about a same-day van. We take it only when the collection time, the delivery time, and the
+        rate can be agreed before the van leaves.
       </p>
       <p>
-        Built for business-critical deliveries, our Leeds team keeps communication clear and timelines controlled from
-        pickup to drop-off.
+        Where a same-day collection cannot be met with confidence, we will say so promptly rather than accept the
+        booking.
       </p>
     </ArticleLayout>
   );

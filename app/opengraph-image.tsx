@@ -142,17 +142,17 @@ export default function OgImage() {
                 fontWeight: 400,
               }}
             >
-              Reliable drivers, per-parcel capacity, and depots in Leeds,
-              Bradford, York, and Doncaster.
+              Regular local drops across Yorkshire. Long-distance
+              work across the UK when the journey requires it.
             </span>
           </div>
 
           {/* Bottom: Stats bar */}
           <div style={{ display: "flex", gap: 48, alignItems: "flex-end" }}>
             {[
-              { value: "100%", label: "On-time delivery" },
-              { value: "50+", label: "Active vans" },
-              { value: "4 hubs", label: "Yorkshire coverage" },
+              { value: "Leeds", label: "Where we are based" },
+              { value: "On demand", label: "Vans when booked" },
+              { value: "4 areas", label: "Yorkshire coverage" },
             ].map((stat) => (
               <div
                 key={stat.label}

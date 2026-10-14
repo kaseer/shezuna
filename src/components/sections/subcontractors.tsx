@@ -16,11 +16,11 @@ export function Subcontractors({ showSteps = false }: SubcontractorsProps) {
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-bright">Subcontractors</p>
               <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-                XLWB van capacity for Yorkshire multi-drop routes
+                Capacity for Yorkshire routes, and for longer UK journeys
               </h2>
               <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-                Drivers and fleet owners with LWB or XLWB vans can partner with Shezuna. We place excess capacity onto
-                live multi-drop and dedicated work from the nearest depot.
+                Drivers and fleet owners with suitable vans may offer capacity for our Yorkshire rounds, and for
+                longer journeys across the United Kingdom. An assignment follows a confirmed client booking.
               </p>
               <ul className="mt-6 space-y-3">
                 {subcontractorBenefits.map((benefit) => (
@@ -34,7 +34,7 @@ export function Subcontractors({ showSteps = false }: SubcontractorsProps) {
               </ul>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button href="/contact?role=subcontractor" variant="emerald">
-                  Partner With Us
+                  Apply to work with us
                 </Button>
                 {showSteps ? null : (
                   <Button

@@ -20,8 +20,8 @@ export function ContactSection({ defaultRole, defaultRegion }: ContactSectionPro
               Tell us the lanes. We will tell you the vans.
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-300">
-              Clients looking for fleet capacity and subcontractors looking for routes both come through this desk.
-              Share the region and we will come back with a clear next step.
+              Share a regular Yorkshire route, or a longer journey across the United Kingdom. The Leeds desk will
+              reply with availability and a quotation.
             </p>
             <ul className="mt-8 space-y-4 text-sm text-slate-200">
               <li className="flex items-center gap-3">
