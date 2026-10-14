@@ -37,7 +37,7 @@ export function EmailTemplate({
         }}
       >
         <h1 style={{ margin: 0, fontSize: "20px", color: "#ffffff" }}>
-          New Contact Enquiry - <span style={{ color: "#f59e0b" }}>Shezuna</span>
+          New enquiry — <span style={{ color: "#7dd3fc" }}>Shezuna</span>
         </h1>
       </div>
 
@@ -77,7 +77,7 @@ export function EmailTemplate({
               >
                 Company
               </td>
-              <td style={{ padding: "10px 0", fontSize: "15px" }}>{company}</td>
+              <td style={{ padding: "10px 0", fontSize: "15px" }}>{company || "Not supplied"}</td>
             </tr>
 
             <tr style={{ borderTop: "1px solid #e2e8f0" }}>
@@ -92,7 +92,7 @@ export function EmailTemplate({
                 Email
               </td>
               <td style={{ padding: "10px 0", fontSize: "15px" }}>
-                <a href={`mailto:${email}`} style={{ color: "#1d4ed8" }}>
+                <a href={`mailto:${email}`} style={{ color: "#155eef" }}>
                   {email}
                 </a>
               </td>
@@ -110,7 +110,7 @@ export function EmailTemplate({
                 Phone
               </td>
               <td style={{ padding: "10px 0", fontSize: "15px" }}>
-                <a href={`tel:${phone}`} style={{ color: "#1d4ed8" }}>
+                <a href={`tel:${phone}`} style={{ color: "#155eef" }}>
                   {phone}
                 </a>
               </td>
@@ -173,11 +173,11 @@ export function EmailTemplate({
           style={{
             marginTop: "24px",
             padding: "16px",
-            background: "#fff7ed",
-            border: "1px solid #fed7aa",
+            background: "#f4f7fb",
+            border: "1px solid #d7e0ec",
             borderRadius: "8px",
             fontSize: "13px",
-            color: "#92400e",
+            color: "#0c1c33",
           }}
         >
           Reply directly to this email to respond to {name}. Shezuna, {site.address}.

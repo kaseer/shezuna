@@ -96,7 +96,7 @@ export function Hero() {
               <p className="text-xs text-emerald">Run from the Leeds desk</p>
             </div>
             <div className="mt-2 h-72 text-ink sm:h-80">
-              <NetworkMap />
+              <NetworkMap gradientId="hero-hub-glow" />
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
               {stats.map((stat) => (

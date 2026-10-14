@@ -73,7 +73,7 @@ export const pages = {
   },
   subcontractors: {
     path: "/subcontractors",
-    title: "Yorkshire Van Partners | Shezuna",
+    title: "Yorkshire Van Capacity | Shezuna",
     description:
       "Owners of suitable vans can ask about Yorkshire routes. Work is offered only after the rate is agreed.",
     imageAlt: "Shezuna van subcontracting routes across Yorkshire",
@@ -145,14 +145,14 @@ export const regions: Record<
   },
   bradford: {
     path: "/coverage/bradford",
-    title: "Van Delivery Partner Bradford | Shezuna",
+    title: "Bradford Local Deliveries | Shezuna",
     description:
-      "Van delivery partner in Bradford for B2B parcels and overflow. Also serving Leeds, York and Doncaster.",
-    imageAlt: "Shezuna van delivery partner covering Bradford",
-    keywords: ["van delivery partner Bradford", "B2B parcel distribution Yorkshire"],
+      "Local van deliveries in Bradford for regular drops and extra cover. Also serving Leeds, York and Doncaster.",
+    imageAlt: "Shezuna local van deliveries covering Bradford",
+    keywords: ["van deliveries Bradford", "B2B parcel distribution Yorkshire"],
     changeFrequency: "monthly",
     priority: 0.9,
-    h1: "Van delivery partner in Bradford",
+    h1: "Local van deliveries in Bradford",
     intro:
       "Bradford and the neighbouring towns are attended from Leeds, with the vehicle and the timing settled when the booking is made.",
     points: [

@@ -117,7 +117,7 @@ export function SiteHeader() {
                 onClick={close}
                 className="inline-flex h-11 items-center justify-center rounded-full border border-border text-sm font-semibold text-ink"
               >
-                Partner With Us
+                Apply to work with us
               </Link>
             </div>
           </motion.div>

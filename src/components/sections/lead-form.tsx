@@ -39,6 +39,7 @@ export function LeadForm({ defaultRole, defaultRegion, idPrefix = "lead" }: Lead
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
+    watch,
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     mode: "onTouched",
@@ -55,6 +56,7 @@ export function LeadForm({ defaultRole, defaultRegion, idPrefix = "lead" }: Lead
   });
 
   const fieldId = (name: string) => `${idPrefix}-${name}`;
+  const companyLabel = watch("role") === "subcontractor" ? "Company name (optional)" : "Company name";
 
   const onSubmit = async (values: ContactFormValues) => {
     setSubmitStatus("idle");
@@ -164,7 +166,7 @@ export function LeadForm({ defaultRole, defaultRegion, idPrefix = "lead" }: Lead
                 <Field label="Phone number" id={fieldId("phone")} error={errors.phone?.message}>
                   <input id={fieldId("phone")} type="tel" autoComplete="tel" className={fieldClass} {...register("phone")} />
                 </Field>
-                <Field label="Company name" id={fieldId("company")} error={errors.company?.message}>
+                <Field label={companyLabel} id={fieldId("company")} error={errors.company?.message}>
                   <input
                     id={fieldId("company")}
                     type="text"
@@ -185,10 +187,10 @@ export function LeadForm({ defaultRole, defaultRegion, idPrefix = "lead" }: Lead
                     ))}
                   </select>
                 </Field>
-                <Field label="Region" id={fieldId("region")} error={errors.region?.message}>
+                <Field label="Where is the work?" id={fieldId("region")} error={errors.region?.message}>
                   <select id={fieldId("region")} className={cn(fieldClass, "bg-background")} {...register("region")}>
                     <option value="" disabled>
-                      Select a region
+                      Select where the work is
                     </option>
                     {REGION_VALUES.map((value) => (
                       <option key={value} value={value}>

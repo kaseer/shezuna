@@ -8,6 +8,7 @@ type NetworkMapProps = {
   activeId?: HubId | "all";
   onSelect?: (id: HubId) => void;
   className?: string;
+  gradientId?: string;
 };
 
 const links: [HubId, HubId][] = [
@@ -23,13 +24,18 @@ function point(id: HubId) {
 }
 
 /** Stylised Yorkshire network. Hubs are buttons when a selection handler is provided. */
-export function NetworkMap({ activeId = "all", onSelect, className }: NetworkMapProps) {
+export function NetworkMap({
+  activeId = "all",
+  onSelect,
+  className,
+  gradientId = "hub-glow",
+}: NetworkMapProps) {
   const reduce = useReducedMotion();
 
   return (
     <svg viewBox="0 0 100 100" className={cn("h-full w-full", className)} role="img" aria-label="Yorkshire logistics coverage map for Leeds, Bradford, York and Doncaster">
       <defs>
-        <radialGradient id="hub-glow" cx="50%" cy="50%" r="50%">
+        <radialGradient id={gradientId} cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#34d399" stopOpacity="0.55" />
           <stop offset="100%" stopColor="#34d399" stopOpacity="0" />
         </radialGradient>
@@ -67,7 +73,7 @@ export function NetworkMap({ activeId = "all", onSelect, className }: NetworkMap
         const dimmed = activeId !== "all" && !selected;
         const content = (
           <g opacity={dimmed ? 0.4 : 1}>
-            {selected ? <circle cx={hub.x} cy={hub.y} r="6.5" fill="url(#hub-glow)" /> : null}
+            {selected ? <circle cx={hub.x} cy={hub.y} r="6.5" fill={`url(#${gradientId})`} /> : null}
             <circle cx={hub.x} cy={hub.y} r={selected ? 2.3 : 1.8} fill={selected ? "#34d399" : "#7dd3fc"} />
             <text
               x={hub.x + 3.2}

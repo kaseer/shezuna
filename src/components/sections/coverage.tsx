@@ -42,7 +42,7 @@ export function Coverage({
         <div className={cn("grid items-start gap-8 lg:grid-cols-[0.9fr_1.1fr]", heading && "mt-12")}>
           <div className="glass rounded-3xl p-4 sm:p-6">
             <div className="h-80 text-ink sm:h-[28rem]">
-              <NetworkMap activeId={active} onSelect={setActive} />
+              <NetworkMap activeId={active} onSelect={setActive} gradientId="coverage-hub-glow" />
             </div>
             <p className="px-2 pb-1 text-xs text-muted">Select an area on the map or use the filters.</p>
           </div>
